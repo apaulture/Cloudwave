@@ -22,7 +22,7 @@ public class NoteController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // m_Animator.SetBool("IsTouched", true);
+        m_Animator.SetBool("IsTouched", true);
 
 
         if (other.gameObject.CompareTag("Hand"))
@@ -37,6 +37,19 @@ public class NoteController : MonoBehaviour
                     OVRInput.SetControllerVibration(0.5f, 1f, OVRInput.Controller.RTouch);
                     break;
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        switch (other.gameObject.name)
+        {
+            case "LeftHandAnchor":
+                OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
+                break;
+            case "RightHandAnchor":
+                OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+                break;
         }
     }
 
