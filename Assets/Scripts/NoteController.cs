@@ -6,26 +6,27 @@ public class NoteController : MonoBehaviour
 {
     Renderer m_Renderer;
     Material m_Material;
-    AudioSource m_AudioSource;
     Animator m_Animator;
+
+    Color32 lerpedColor;
+    Color32 touchColor = Color.white;
 
     void Start()
     {
         m_Renderer = GetComponent<Renderer>();
         m_Material = m_Renderer.material;
-        m_AudioSource = GetComponent<AudioSource>();
         m_Animator = GetComponent<Animator>();
+
+        lerpedColor = m_Renderer.material.color;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        m_Animator.SetBool("IsTouched", true);
+        // m_Animator.SetBool("IsTouched", true);
 
 
         if (other.gameObject.CompareTag("Hand"))
         {
-            PlayNote();
-
             // Touched with which hand?
             switch (other.gameObject.name)
             {
@@ -33,14 +34,33 @@ public class NoteController : MonoBehaviour
                     OVRInput.SetControllerVibration(0.5f, 1f, OVRInput.Controller.LTouch);
                     break;
                 case "RightHandAnchor":
-                    OVRInput.SetControllerVibration(1f, 1f, OVRInput.Controller.RTouch);
+                    OVRInput.SetControllerVibration(0.5f, 1f, OVRInput.Controller.RTouch);
                     break;
             }
         }
     }
 
-    void PlayNote()
+    /*private void OnTriggerStay(Collider other)
     {
-        m_AudioSource.Play();
+        while (transform.localScale.magnitude > 0)
+        {
+            transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
+            switch (other.gameObject.name)
+            {
+                case "LeftHandAnchor":
+                    OVRInput.SetControllerVibration(0.7f, 1f, OVRInput.Controller.LTouch);
+                    break;
+                case "RightHandAnchor":
+                    OVRInput.SetControllerVibration(0.7f, 1f, OVRInput.Controller.RTouch);
+                    break;
+            }
+            lerpedColor = Color32.Lerp(lerpedColor, touchColor, Time.time);
+            
+        }
+
+        Destroy(gameObject);
+
+
     }
+    */
 }

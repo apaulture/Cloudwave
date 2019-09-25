@@ -49,7 +49,7 @@ public static class OVRPlugin
 	{
 		get {
 #if OVRPLUGIN_UNSUPPORTED_PLATFORM
-			Debug.LogWarning("Platform is not currently supported by OVRPlugin");
+			// Debug.LogWarning("Platform is not currently supported by OVRPlugin");
 			return _versionZero;
 #else
 			if (_version == null)

@@ -1862,7 +1862,7 @@ public class OVRManager : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("[OVRManager] OnApplicationPause(false)");
+			// Debug.Log("[OVRManager] OnApplicationPause(false)");
 		}
 	}
 
@@ -1870,7 +1870,7 @@ public class OVRManager : MonoBehaviour
 	{
 		if (focus)
 		{
-			Debug.Log("[OVRManager] OnApplicationFocus(true)");
+			// Debug.Log("[OVRManager] OnApplicationFocus(true)");
 		}
 		else
 		{
