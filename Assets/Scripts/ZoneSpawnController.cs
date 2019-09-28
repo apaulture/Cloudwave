@@ -37,7 +37,7 @@ public class ZoneSpawnController : MonoBehaviour
         {
             
             spawnedNote.transform.localScale += noteScaleRate;
-            m_Renderer.material.color = new Color(1, 0.6143571f, 0.3349057f, Mathf.Lerp(0, 1, t));
+            // m_Renderer.material.color = new Color(1, 0.6143571f, 0.3349057f, Mathf.Lerp(0, 1, t));
             //m_Renderer.material.SetColor("_Color", new Color(1, 0, 0, Mathf.Lerp(0, 1, Time.deltaTime * 0.5f)));
         }
         print("Spawned note size: " + spawnedNote.transform.localScale.magnitude);
