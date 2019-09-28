@@ -5,38 +5,57 @@ using UnityEngine;
 public class NoteController : MonoBehaviour
 {
     Renderer m_Renderer;
-    Material m_Material;
     Animator m_Animator;
-
-    Color32 lerpedColor;
-    Color32 touchColor = Color.white;
 
     void Start()
     {
         m_Renderer = GetComponent<Renderer>();
-        m_Material = m_Renderer.material;
         m_Animator = GetComponent<Animator>();
 
-        lerpedColor = m_Renderer.material.color;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        m_Animator.SetBool("IsTouched", true);
-
-
-        if (other.gameObject.CompareTag("Hand"))
+        //if (other.gameObject.CompareTag("Hand"))
         {
             // Touched with which hand?
             switch (other.gameObject.name)
             {
                 case "LeftHandAnchor":
-                    OVRInput.SetControllerVibration(0.5f, 1f, OVRInput.Controller.LTouch);
+                    OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.LTouch);
                     break;
                 case "RightHandAnchor":
-                    OVRInput.SetControllerVibration(0.5f, 1f, OVRInput.Controller.RTouch);
+                    OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.RTouch);
                     break;
             }
+
+            switch (gameObject.transform.name)
+            {
+                case "Tap":
+                    m_Animator.SetBool("IsTouched", true); // play touch animation
+                    print("You touched a tap note!");
+                    break;
+                case "Hold":
+
+                    break;
+                case "Swipe":
+                    m_Animator.SetBool("IsTouched", true);
+                    print("You touched a swipe note!");
+                    break;
+            }
+        }
+
+        StartCoroutine(WaitAfterAnimation());
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (gameObject.transform.name == "Hold")
+        {
+            // m_Animator.SetFloat("IsHeld", 0.5f);
+            
+            m_Renderer.material.SetColor("_Color", new Color(1, 0, 0, Mathf.Lerp(0, 1, Time.deltaTime * 0.5f)));
         }
     }
 
@@ -53,27 +72,9 @@ public class NoteController : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerStay(Collider other)
+    IEnumerator WaitAfterAnimation()
     {
-        while (transform.localScale.magnitude > 0)
-        {
-            transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
-            switch (other.gameObject.name)
-            {
-                case "LeftHandAnchor":
-                    OVRInput.SetControllerVibration(0.7f, 1f, OVRInput.Controller.LTouch);
-                    break;
-                case "RightHandAnchor":
-                    OVRInput.SetControllerVibration(0.7f, 1f, OVRInput.Controller.RTouch);
-                    break;
-            }
-            lerpedColor = Color32.Lerp(lerpedColor, touchColor, Time.time);
-            
-        }
-
-        Destroy(gameObject);
-
-
+        yield return new WaitForSeconds(1.5f);
+        gameObject.SetActive(false);
     }
-    */
 }
