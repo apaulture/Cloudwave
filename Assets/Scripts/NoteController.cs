@@ -6,18 +6,27 @@ public class NoteController : MonoBehaviour
 {
     Renderer m_Renderer;
     Animator m_Animator;
+    Collider m_ParentCollider;
 
     void Start()
     {
         m_Renderer = GetComponent<Renderer>();
         m_Animator = GetComponent<Animator>();
-
+        m_ParentCollider = GetComponentInParent<Collider>();
     }
 
     private void Update()
     {
-        
-        
+        if (this.gameObject.name == "Swipe")
+        {
+            m_ParentCollider.enabled = !m_ParentCollider.enabled;
+            if (gameObject.activeSelf == false)
+            {
+                print("fuck you");
+                m_ParentCollider.enabled = true;
+                m_ParentCollider.enabled = !m_ParentCollider.enabled;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,14 +48,16 @@ public class NoteController : MonoBehaviour
             {
                 case "Tap":
                     m_Animator.SetBool("IsTouched", true); // play touch animation
-                    print("You touched a tap note!");
+                    
                     break;
                 case "Hold":
                     m_Animator.SetBool("IsHeld", true);
                     break;
                 case "Swipe":
+                    
+                    
                     m_Animator.SetBool("IsTouched", true);
-                    print("You touched a swipe note!");
+                    
                     break;
             }
         }
@@ -80,7 +91,9 @@ public class NoteController : MonoBehaviour
 
     IEnumerator WaitAfterAnimation()
     {
-        yield return new WaitForSeconds(2f);
+        m_ParentCollider.enabled = !m_ParentCollider.enabled;
+        yield return new WaitForSeconds(.3f);
+        
         gameObject.SetActive(false);
     }
 }

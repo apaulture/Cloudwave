@@ -10,10 +10,7 @@ public class ZoneSpawnController : MonoBehaviour
     public GameObject hold;
 
     public int noteCount; // Number of notes to spawn
-    public Vector3 noteScaleRate = new Vector3(.01f, .01f, .01f); // Rate of scale increase
 
-    float t;
-    float originalNoteSize;
     GameObject spawnedNote; // Instantiated note
     Vector3 randomPosition;
     Quaternion randomDirection;
@@ -23,8 +20,6 @@ public class ZoneSpawnController : MonoBehaviour
 
     void Start()
     {
-        originalNoteSize = tap.transform.localScale.magnitude;
-        
         // Coroutine
         StartCoroutine(NoteSpawning());
         
@@ -32,15 +27,7 @@ public class ZoneSpawnController : MonoBehaviour
 
     void Update()
     {
-        t += Time.deltaTime * 0.1f;
-        if (spawnedNote.transform.localScale.magnitude < originalNoteSize)
-        {
-            
-            spawnedNote.transform.localScale += noteScaleRate;
-            // m_Renderer.material.color = new Color(1, 0.6143571f, 0.3349057f, Mathf.Lerp(0, 1, t));
-            //m_Renderer.material.SetColor("_Color", new Color(1, 0, 0, Mathf.Lerp(0, 1, Time.deltaTime * 0.5f)));
-        }
-        print("Spawned note size: " + spawnedNote.transform.localScale.magnitude);
+
     }
 
     IEnumerator NoteSpawning()
@@ -56,26 +43,24 @@ public class ZoneSpawnController : MonoBehaviour
                 case 0:
                     spawnedNote = Instantiate(tap, randomPosition, Quaternion.identity); // Spawn note at notePosition
                     spawnedNote.transform.name = tap.name;
-                    spawnedNote.transform.localScale = Vector3.zero; // Set spawnedNote scale to 0
+                    // Play spawn animation here
                     break;
                 case 1:
                     spawnedNote = Instantiate(swipe, randomPosition, randomDirection); // Spawn note at notePosition
                     spawnedNote.transform.name = swipe.name;
-                    spawnedNote.transform.localScale = Vector3.zero; // Set spawnedNote scale to 0
+                    // Play spawn animation here
                     break;
                 case 2:
                     spawnedNote = Instantiate(hold, randomPosition, randomDirection); // Spawn note at notePosition
                     spawnedNote.transform.name = hold.name;
-                    spawnedNote.transform.localScale = Vector3.zero; // Set spawnedNote scale to 0
+                    // Play spawn animation here
                     break;
             }
-
-
-            m_Renderer = spawnedNote.GetComponent<Renderer>();
 
             yield return new WaitForSeconds(2);
             noteCount--;
         }
-        
+
+        m_Renderer = spawnedNote.GetComponent<Renderer>();
     }
 }
