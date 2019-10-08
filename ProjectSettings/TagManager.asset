@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Note
   - Hand
+  - Arrow
   layers:
   - Default
   - TransparentFX

@@ -6,27 +6,11 @@ public class NoteController : MonoBehaviour
 {
     Renderer m_Renderer;
     Animator m_Animator;
-    Collider m_ParentCollider;
 
     void Start()
     {
         m_Renderer = GetComponent<Renderer>();
         m_Animator = GetComponent<Animator>();
-        m_ParentCollider = GetComponentInParent<Collider>();
-    }
-
-    private void Update()
-    {
-        if (this.gameObject.name == "Swipe")
-        {
-            m_ParentCollider.enabled = !m_ParentCollider.enabled;
-            if (gameObject.activeSelf == false)
-            {
-                print("fuck you");
-                m_ParentCollider.enabled = true;
-                m_ParentCollider.enabled = !m_ParentCollider.enabled;
-            }
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,36 +28,24 @@ public class NoteController : MonoBehaviour
                     break;
             }
 
-            switch (gameObject.transform.name)
+            switch (gameObject.tag)
             {
-                case "Tap":
+                case "Note":
                     m_Animator.SetBool("IsTouched", true); // play touch animation
                     
+                    break;
+                case "Arrow":
+                    m_Animator.SetBool("IsTouched", true); // play touch animation
+
                     break;
                 case "Hold":
                     m_Animator.SetBool("IsHeld", true);
                     break;
-                case "Swipe":
-                    
-                    
-                    m_Animator.SetBool("IsTouched", true);
-                    
-                    break;
             }
         }
-
-        StartCoroutine(WaitAfterAnimation());
         
-    }
+        StartCoroutine(WaitAfterAnimation());
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (gameObject.transform.name == "Hold")
-        {
-            
-            
-            m_Renderer.material.SetColor("_Color", new Color(1, 0, 0, Mathf.Lerp(0, 1, Time.deltaTime * 0.5f)));
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -91,7 +63,6 @@ public class NoteController : MonoBehaviour
 
     IEnumerator WaitAfterAnimation()
     {
-        m_ParentCollider.enabled = !m_ParentCollider.enabled;
         yield return new WaitForSeconds(.3f);
         
         gameObject.SetActive(false);
