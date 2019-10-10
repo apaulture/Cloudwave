@@ -6,7 +6,7 @@ public class Song : MonoBehaviour
 {
     public float bpm;
     public AudioClip song;
-    public Spawner temp;
+    public GameObject temp;
     private float timeCounter;
     private float nextNoteTime;
 
@@ -23,7 +23,7 @@ public class Song : MonoBehaviour
         timeCounter += Time.deltaTime;
         if(timeCounter >= nextNoteTime)
         {
-            temp.spawnNote();
+            // temp.spawnNote();
             nextNoteTime += 60 / bpm;
         }
     }
