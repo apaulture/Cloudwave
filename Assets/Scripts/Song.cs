@@ -23,7 +23,8 @@ public class Song : MonoBehaviour
         timeCounter += Time.deltaTime;
         if(timeCounter >= nextNoteTime)
         {
-            temp.spawnNote();
+            System.Random rnd = new System.Random();
+            temp.spawnNote(new Vector3(rnd.Next(-3, 3), rnd.Next(-2, 0), 0));
             nextNoteTime += 60 / bpm;
         }
     }

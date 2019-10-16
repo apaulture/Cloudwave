@@ -19,4 +19,9 @@ public class Note : MonoBehaviour
     {
         gameObject.GetComponent<Transform>().Translate(velocity * Time.deltaTime);
     }
+
+    public void setVelocity(Vector3 newVelocity)
+    {
+        velocity = newVelocity;
+    }
 }
