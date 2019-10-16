@@ -6,7 +6,7 @@ public class Song : MonoBehaviour
 {
     public float bpm;
     public AudioClip song;
-    public Spawner temp;
+    public GameObject temp;
     private float timeCounter;
     private float nextNoteTime;
 
@@ -23,8 +23,7 @@ public class Song : MonoBehaviour
         timeCounter += Time.deltaTime;
         if(timeCounter >= nextNoteTime)
         {
-            System.Random rnd = new System.Random();
-            temp.spawnNote(new Vector3(rnd.Next(-3, 3), rnd.Next(-2, 0), 0));
+            // temp.spawnNote();
             nextNoteTime += 60 / bpm;
         }
     }

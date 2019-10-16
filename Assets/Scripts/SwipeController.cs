@@ -18,23 +18,8 @@ public class SwipeController : MonoBehaviour
     GameObject[] swipeNotes;
     Vector3 m_NotePosition;
 
-    /* Components
-    Collider m_Collider;
-    Collider m_ChildCollider;
-    Renderer m_Renderer;
-    Animator m_Animator;
-    */
-
     void Start()
     {
-        /*
-        m_ChildCollider = GetComponentInChildren<Collider>();
-        m_Collider = GetComponent<Collider>();
-        m_Renderer = GetComponent<Renderer>();
-        m_Animator = GetComponentInChildren<Animator>();
-        */
-
-
         swipeNotes = new GameObject[swipeLength];
         m_NotePosition = transform.position;
 
@@ -59,14 +44,12 @@ public class SwipeController : MonoBehaviour
             // Instantiate first and last note
             if (i == 0 || i == swipeLength - 1)
             {
-                print("Spawn note");
                 swipeNotes[i] = Instantiate(note, m_NotePosition, Quaternion.identity, transform);
             }
 
             // Instantiate notes in between
             if (i != 0 && i != swipeLength - 1)
             {
-                print("Spawn arrow");
                 swipeNotes[i] = Instantiate(arrow, m_NotePosition, Quaternion.identity, transform);
             }
 

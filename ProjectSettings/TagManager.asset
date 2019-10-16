@@ -7,6 +7,8 @@ TagManager:
   - Note
   - Hand
   - Arrow
+  - Build
+  - Building
   layers:
   - Default
   - TransparentFX
