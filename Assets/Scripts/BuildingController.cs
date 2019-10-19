@@ -11,19 +11,20 @@ public class BuildingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 1; i < 200; i++)
+        for (int i = 1; i < 300; i++)
         {
             float yScale = Random.Range(5, 70);
             buildingScale = new Vector3(1, yScale, 1);
             float yPosition = (yScale / 2) - 30;
 
 
-            float x = Random.Range(-60f, 60f);
-            float z = Random.Range(-60f, 60f);
+            float x = Random.Range(-65f, 65f);
+            float z = Random.Range(-65f, 65f);
             Vector3 position = new Vector3(x, yPosition, z);
 
-            spawnedBuilding = Instantiate(building, position, Quaternion.identity);
+            spawnedBuilding = Instantiate(building, position, Quaternion.identity, transform);
             spawnedBuilding.transform.localScale += buildingScale;
+            
 
             // Divide by 2 and minus 30 from height
         }
