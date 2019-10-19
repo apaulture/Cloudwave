@@ -11,6 +11,8 @@ public class NoteController : MonoBehaviour
     {
         m_Renderer = GetComponent<Renderer>();
         m_Animator = GetComponent<Animator>();
+
+        StartCoroutine(Fadeout());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +46,7 @@ public class NoteController : MonoBehaviour
             }
         }
         
-        StartCoroutine(WaitAfterAnimation());
+        
 
     }
 
@@ -61,9 +63,10 @@ public class NoteController : MonoBehaviour
         }
     }
 
-    IEnumerator WaitAfterAnimation()
+    IEnumerator Fadeout()
     {
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(2.33f);
+        // play fade
         
         gameObject.SetActive(false);
     }
