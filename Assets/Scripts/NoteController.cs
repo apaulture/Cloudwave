@@ -6,11 +6,13 @@ public class NoteController : MonoBehaviour
 {
     Renderer m_Renderer;
     Animator m_Animator;
+    ScoreManager scoreManager;
 
     void Start()
     {
         m_Renderer = GetComponent<Renderer>();
         m_Animator = GetComponent<Animator>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
         StartCoroutine(Fadeout());
     }
@@ -67,7 +69,8 @@ public class NoteController : MonoBehaviour
     {
         yield return new WaitForSeconds(2.33f);
         // play fade
-        
+
+        scoreManager.addPoint();
         gameObject.SetActive(false);
     }
 }
