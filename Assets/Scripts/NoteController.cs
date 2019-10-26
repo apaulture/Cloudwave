@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.SceneManagement;
 
 public class NoteController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class NoteController : MonoBehaviour
 
     void Start()
     {
+        
+        
         m_Renderer = GetComponent<Renderer>();
         m_Animator = GetComponent<Animator>();
     }
@@ -16,7 +19,7 @@ public class NoteController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //if (other.gameObject.CompareTag("Hand"))
-        {
+        //{
             // Touched with which hand?
             switch (other.gameObject.name)
             {
@@ -32,19 +35,21 @@ public class NoteController : MonoBehaviour
             {
                 case "Note":
                     m_Animator.SetBool("IsTouched", true); // play touch animation
-                    
+                    //StartCoroutine(Wait());
+                    //SceneManager.LoadScene("Paul");
                     break;
                 case "Arrow":
                     m_Animator.SetBool("IsTouched", true); // play touch animation
-
                     break;
                 case "Hold":
                     m_Animator.SetBool("IsHeld", true);
                     break;
             }
-        }
-        
+        //}
+
         StartCoroutine(WaitAfterAnimation());
+
+        
 
     }
 
@@ -65,6 +70,11 @@ public class NoteController : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
+
+   // IEnumerator Wait()
+    //{
+        //yield return new WaitForSeconds(2);
+    //}
 }
