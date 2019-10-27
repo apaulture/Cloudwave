@@ -4,52 +4,47 @@ using UnityEngine;
 
 public class NoteController : MonoBehaviour
 {
-    Renderer m_Renderer;
+    public float vibrationTime;
+
     Animator m_Animator;
     ScoreManager scoreManager;
 
     void Start()
     {
-        m_Renderer = GetComponent<Renderer>();
         m_Animator = GetComponent<Animator>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
-        StartCoroutine(Fadeout());
+        StartCoroutine(SetInactiveAfterMissing());
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.CompareTag("Hand"))
+        // Touched with which hand?
+        switch (other.gameObject.name)
         {
-            // Touched with which hand?
-            switch (other.gameObject.name)
-            {
-                case "LeftHandAnchor":
-                    OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.LTouch);
-                    break;
-                case "RightHandAnchor":
-                    OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.RTouch);
-                    break;
-            }
-
-            switch (gameObject.tag)
-            {
-                case "Note":
-                    m_Animator.SetBool("IsTouched", true); // play touch animation
-                    
-                    break;
-                case "Arrow":
-                    m_Animator.SetBool("IsTouched", true); // play touch animation
-
-                    break;
-                case "Hold":
-                    m_Animator.SetBool("IsHeld", true);
-                    break;
-            }
+            case "LeftHandAnchor":
+                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.LTouch);
+                break;
+            case "RightHandAnchor":
+                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.RTouch);
+                break;
         }
-        
-        
 
+        // Behavior of note after touched
+        switch (gameObject.tag)
+        {
+            case "Tap":
+                m_Animator.SetBool("IsTouched", true); // play touch animation
+                StartCoroutine(SetInactiveAfterTouching());
+                break;
+            case "Arrow":
+                m_Animator.SetBool("IsTouched", true); // play touch animation
+
+                break;
+            case "Hold":
+                m_Animator.SetBool("IsHeld", true);
+                break;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -65,12 +60,23 @@ public class NoteController : MonoBehaviour
         }
     }
 
-    IEnumerator Fadeout()
+    IEnumerator SetInactiveAfterMissing()
     {
-        yield return new WaitForSeconds(2.33f);
-        // play fade
-
-        scoreManager.addPoint();
+        yield return new WaitForSeconds(2.33f); // set this time to after the note spawn and missed animation has played
         gameObject.SetActive(false);
+    }
+
+    IEnumerator SetInactiveAfterTouching()
+    {
+        // yield return new WaitForSeconds(vibrationTime); // How long to vibrate?
+        // OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
+        yield return new WaitForSeconds(0.5f);
+
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator VibrationTime()
+    {
+        yield return new WaitForSeconds(vibrationTime);
     }
 }

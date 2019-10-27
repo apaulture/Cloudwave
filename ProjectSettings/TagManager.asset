@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Note
   - Hand
   - Arrow
   - Build
   - Building
+  - Tap
   layers:
   - Default
   - TransparentFX

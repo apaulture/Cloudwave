@@ -20,7 +20,6 @@ public class DestroyBuilding : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Building"))
         {
-            print("Hello");
             Destroy(other.gameObject);
         }
     }

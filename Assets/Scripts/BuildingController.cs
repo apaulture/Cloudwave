@@ -41,7 +41,6 @@ public class BuildingController : MonoBehaviour
         // other.gameObject.SetActive(false);
         if (other.gameObject.CompareTag("Building"))
         {
-            print("Building touched trigger");
             other.gameObject.SetActive(false);
             
         }

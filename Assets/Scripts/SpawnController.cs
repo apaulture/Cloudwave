@@ -9,8 +9,14 @@ public class SpawnController : MonoBehaviour
     public GameObject tap;
     public GameObject swipe;
     public GameObject hold;
+    public float bpm;
+    public float timeBetweenNotes;
+    float secsInBetweenBeats;
+    public int numberOfNotes;
 
     public enum Note { Tap, Swipe, Hold };
+
+    public float initialWait;
 
     public Note note1;
     public Vector3 position1;
@@ -22,6 +28,15 @@ public class SpawnController : MonoBehaviour
 
     public Note note3;
     public Vector3 position3;
+    public float wait3;
+
+    public Note note4;
+    public Vector3 position4;
+    public float wait4;
+
+    public Note note5;
+    public Vector3 position5;
+    public float wait5;
 
     GameObject spawnedNote; // Instantiated note
     SwipeController swipeNote;
@@ -29,6 +44,7 @@ public class SpawnController : MonoBehaviour
     void Start()
     {
         swipeNote = swipe.GetComponent<SwipeController>();
+        secsInBetweenBeats = 60.0f / bpm;
 
         StartCoroutine(NoteSpawning());
     }
@@ -40,6 +56,8 @@ public class SpawnController : MonoBehaviour
 
     IEnumerator NoteSpawning()
     {
+        yield return new WaitForSeconds(initialWait);
+
         switch (note1)
         {
             case Note.Tap:
@@ -83,5 +101,51 @@ public class SpawnController : MonoBehaviour
                 spawnedNote = Instantiate(hold, position3, Quaternion.identity, transform);
                 break;
         }
+
+        yield return new WaitForSeconds(wait3);
+
+        switch (note4)
+        {
+            case Note.Tap:
+                spawnedNote = Instantiate(tap, position4, Quaternion.identity, transform);
+                break;
+            case Note.Swipe:
+                spawnedNote = Instantiate(swipe, position4, Quaternion.identity, transform);
+                break;
+            case Note.Hold:
+                spawnedNote = Instantiate(hold, position4, Quaternion.identity, transform);
+                break;
+        }
+
+        yield return new WaitForSeconds(wait4);
+
+        switch (note5)
+        {
+            case Note.Tap:
+                spawnedNote = Instantiate(tap, position5, Quaternion.identity, transform);
+                break;
+            case Note.Swipe:
+                spawnedNote = Instantiate(swipe, position5, Quaternion.identity, transform);
+                break;
+            case Note.Hold:
+                spawnedNote = Instantiate(hold, position5, Quaternion.identity, transform);
+                break;
+        }
+
+
+
+        // Sixth note spawns here
+        for (int i = numberOfNotes; i > 0; i--)
+        {
+            yield return new WaitForSeconds(timeBetweenNotes);
+            float randomX = Random.Range(-0.5f,0.5f);
+            Vector3 position = new Vector3(randomX,1.1f,0.5f);
+            
+            Instantiate(tap, position, Quaternion.identity, transform);
+
+            
+        }
+        
+
     }
 }
