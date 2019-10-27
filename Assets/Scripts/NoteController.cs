@@ -35,6 +35,7 @@ public class NoteController : MonoBehaviour
         {
             case "Tap":
                 m_Animator.SetBool("IsTouched", true); // play touch animation
+                scoreManager.addPoint();
                 StartCoroutine(SetInactiveAfterTouching());
                 break;
             case "Arrow":

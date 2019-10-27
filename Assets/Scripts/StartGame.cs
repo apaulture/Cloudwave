@@ -53,7 +53,7 @@ public class StartGame : MonoBehaviour
 
     IEnumerator SetInactiveAfterTouching()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         gameObject.SetActive(false);
     }
 }
