@@ -5,13 +5,17 @@ using UnityEngine;
 public class NoteController : MonoBehaviour
 {
     public float vibrationTime;
+    public AudioClip clip1;
+    public AudioClip clip2;
 
     Animator m_Animator;
+    AudioSource m_AudioSource;
     ScoreManager scoreManager;
 
     void Start()
     {
         m_Animator = GetComponent<Animator>();
+        m_AudioSource = GetComponent<AudioSource>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
         StartCoroutine(SetInactiveAfterMissing());
@@ -36,6 +40,23 @@ public class NoteController : MonoBehaviour
             case "Tap":
                 m_Animator.SetBool("IsTouched", true); // play touch animation
                 scoreManager.addPoint();
+
+                // Randomly choose a clip to play when tap note is touched
+
+                int randomClip = Random.Range(1, 3);
+                switch (randomClip)
+                {
+                    case 1:
+                        //m_AudioSource.clip = clip1;
+                        break;
+                    case 2:
+                        //m_AudioSource.clip = clip2;
+                        break;
+                }
+
+                // Play "clip x" when touched
+                //m_AudioSource.Play();
+
                 StartCoroutine(SetInactiveAfterTouching());
                 break;
             case "Arrow":

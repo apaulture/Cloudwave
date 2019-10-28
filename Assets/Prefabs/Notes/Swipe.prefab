@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f27baa91bd542b7a79ad9e1e5fbbef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeLength: 30
+  swipeLength: 5
   note: {fileID: 3068826882984572409, guid: 30971ca3dc5b742b2a4770db9745be19, type: 3}
   arrow: {fileID: 3068826882984572409, guid: 02f952c0ec74447498ddfcdbd76d812d, type: 3}
   oscillate: 1

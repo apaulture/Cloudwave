@@ -9,17 +9,23 @@ public class SpawnController : MonoBehaviour
     public GameObject tap;
     public GameObject swipe;
     public GameObject hold;
+
+    public AudioClip clip1;
+    public AudioClip clip2;
+
     public float bpm;
     public float timeBetweenNotes;
     float secsInBetweenBeats;
     public int numberOfNotes;
 
     public enum Note { Tap, Swipe, Hold };
+    public enum Clip { C4, C6 };
 
     public float initialWait;
 
     public Note note1;
     public Vector3 position1;
+    public Clip playClip1;
     public float wait1;
 
     public Note note2;
@@ -62,6 +68,19 @@ public class SpawnController : MonoBehaviour
         {
             case Note.Tap:
                 spawnedNote = Instantiate(tap, position1, Quaternion.identity, transform);
+                AudioSource note1source = spawnedNote.GetComponent<AudioSource>();
+                switch (playClip1)
+                {
+                    case Clip.C4:
+                        note1source.clip = clip1;
+                        break;
+                    case Clip.C6:
+                        note1source.clip = clip2;
+                        break;
+                }
+
+                note1source.Play();
+
                 break;
             case Note.Swipe:
                 spawnedNote = Instantiate(swipe, position1, Quaternion.identity, transform);
