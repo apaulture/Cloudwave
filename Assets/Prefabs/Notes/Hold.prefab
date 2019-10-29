@@ -35,7 +35,7 @@ GameObject:
   - component: {fileID: 8415396781326659612}
   m_Layer: 0
   m_Name: Hold
-  m_TagString: Untagged
+  m_TagString: Hold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,7 +83,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3bd2856004f1046eab57437e881ab49b, type: 2}
+  - {fileID: 2100000, guid: 860ec5aed97474b2ea63cac90b7ffdbb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149,6 +149,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vibrationTime: 0
+  clip1: {fileID: 0}
+  clip2: {fileID: 0}
+  heldParticle: {fileID: 922255434154058026, guid: 6c8e3f0604b4a447aaf598cc7142d871,
+    type: 3}
 --- !u!95 &1782667419
 Animator:
   serializedVersion: 3

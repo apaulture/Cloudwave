@@ -12,6 +12,9 @@ public class SpawnController : MonoBehaviour
 
     public AudioClip clip1;
     public AudioClip clip2;
+    public AudioClip clip3;
+    public AudioClip clip4;
+    public AudioClip clip5;
 
     public float bpm;
     public float timeBetweenNotes;
@@ -19,7 +22,7 @@ public class SpawnController : MonoBehaviour
     public int numberOfNotes;
 
     public enum Note { Tap, Swipe, Hold };
-    public enum Clip { C4, C6 };
+    public enum Clip { Clip1, Clip2, Clip3, Clip4, Clip5 };
 
     public float initialWait;
 
@@ -30,18 +33,22 @@ public class SpawnController : MonoBehaviour
 
     public Note note2;
     public Vector3 position2;
+    public Clip playClip2;
     public float wait2;
 
     public Note note3;
     public Vector3 position3;
+    public Clip playClip3;
     public float wait3;
 
     public Note note4;
     public Vector3 position4;
+    public Clip playClip4;
     public float wait4;
 
     public Note note5;
     public Vector3 position5;
+    public Clip playClip5;
     public float wait5;
 
     GameObject spawnedNote; // Instantiated note
@@ -71,11 +78,20 @@ public class SpawnController : MonoBehaviour
                 AudioSource note1source = spawnedNote.GetComponent<AudioSource>();
                 switch (playClip1)
                 {
-                    case Clip.C4:
+                    case Clip.Clip1:
                         note1source.clip = clip1;
                         break;
-                    case Clip.C6:
+                    case Clip.Clip2:
                         note1source.clip = clip2;
+                        break;
+                    case Clip.Clip3:
+                        note1source.clip = clip3;
+                        break;
+                    case Clip.Clip4:
+                        note1source.clip = clip4;
+                        break;
+                    case Clip.Clip5:
+                        note1source.clip = clip5;
                         break;
                 }
 
@@ -97,6 +113,27 @@ public class SpawnController : MonoBehaviour
         {
             case Note.Tap:
                 spawnedNote = Instantiate(tap, position2, Quaternion.identity, transform);
+                AudioSource note2source = spawnedNote.GetComponent<AudioSource>();
+                switch (playClip2)
+                {
+                    case Clip.Clip1:
+                        note2source.clip = clip1;
+                        break;
+                    case Clip.Clip2:
+                        note2source.clip = clip2;
+                        break;
+                    case Clip.Clip3:
+                        note2source.clip = clip3;
+                        break;
+                    case Clip.Clip4:
+                        note2source.clip = clip4;
+                        break;
+                    case Clip.Clip5:
+                        note2source.clip = clip5;
+                        break;
+                }
+
+                note2source.Play();
                 break;
             case Note.Swipe:
                 spawnedNote = Instantiate(swipe, position2, Quaternion.identity, transform);
@@ -112,6 +149,27 @@ public class SpawnController : MonoBehaviour
         {
             case Note.Tap:
                 spawnedNote = Instantiate(tap, position3, Quaternion.identity, transform);
+                AudioSource note3source = spawnedNote.GetComponent<AudioSource>();
+                switch (playClip3)
+                {
+                    case Clip.Clip1:
+                        note3source.clip = clip1;
+                        break;
+                    case Clip.Clip2:
+                        note3source.clip = clip2;
+                        break;
+                    case Clip.Clip3:
+                        note3source.clip = clip3;
+                        break;
+                    case Clip.Clip4:
+                        note3source.clip = clip4;
+                        break;
+                    case Clip.Clip5:
+                        note3source.clip = clip5;
+                        break;
+                }
+
+                note3source.Play();
                 break;
             case Note.Swipe:
                 spawnedNote = Instantiate(swipe, position3, Quaternion.identity, transform);
@@ -127,6 +185,27 @@ public class SpawnController : MonoBehaviour
         {
             case Note.Tap:
                 spawnedNote = Instantiate(tap, position4, Quaternion.identity, transform);
+                AudioSource note4source = spawnedNote.GetComponent<AudioSource>();
+                switch (playClip4)
+                {
+                    case Clip.Clip1:
+                        note4source.clip = clip1;
+                        break;
+                    case Clip.Clip2:
+                        note4source.clip = clip2;
+                        break;
+                    case Clip.Clip3:
+                        note4source.clip = clip3;
+                        break;
+                    case Clip.Clip4:
+                        note4source.clip = clip4;
+                        break;
+                    case Clip.Clip5:
+                        note4source.clip = clip5;
+                        break;
+                }
+
+                note4source.Play();
                 break;
             case Note.Swipe:
                 spawnedNote = Instantiate(swipe, position4, Quaternion.identity, transform);
@@ -142,6 +221,27 @@ public class SpawnController : MonoBehaviour
         {
             case Note.Tap:
                 spawnedNote = Instantiate(tap, position5, Quaternion.identity, transform);
+                AudioSource note5source = spawnedNote.GetComponent<AudioSource>();
+                switch (playClip5)
+                {
+                    case Clip.Clip1:
+                        note5source.clip = clip1;
+                        break;
+                    case Clip.Clip2:
+                        note5source.clip = clip2;
+                        break;
+                    case Clip.Clip3:
+                        note5source.clip = clip3;
+                        break;
+                    case Clip.Clip4:
+                        note5source.clip = clip4;
+                        break;
+                    case Clip.Clip5:
+                        note5source.clip = clip5;
+                        break;
+                }
+
+                note5source.Play();
                 break;
             case Note.Swipe:
                 spawnedNote = Instantiate(swipe, position5, Quaternion.identity, transform);

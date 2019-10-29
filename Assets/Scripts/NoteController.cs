@@ -7,6 +7,8 @@ public class NoteController : MonoBehaviour
     public float vibrationTime;
     public AudioClip clip1;
     public AudioClip clip2;
+    public ParticleSystem heldParticle;
+    float holdNoteTime;
 
     Animator m_Animator;
     AudioSource m_AudioSource;
@@ -63,9 +65,36 @@ public class NoteController : MonoBehaviour
                 m_Animator.SetBool("IsTouched", true); // play touch animation
 
                 break;
+        }
+    }
+
+    // For hold note
+    private void OnTriggerStay(Collider other)
+    {
+        switch (other.gameObject.name)
+        {
+            case "LeftHandAnchor":
+                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.LTouch);
+                break;
+            case "RightHandAnchor":
+                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.RTouch);
+                break;
+        }
+
+        switch (gameObject.tag)
+        {
             case "Hold":
+                
                 m_Animator.SetBool("IsHeld", true);
                 break;
+        }
+
+        holdNoteTime += Time.deltaTime;
+        if (holdNoteTime > 0.8f)
+        {
+            Vector3 position = gameObject.transform.position;
+            Instantiate(heldParticle, position, Quaternion.identity, transform.parent);
+            gameObject.SetActive(false);
         }
     }
 
@@ -78,6 +107,14 @@ public class NoteController : MonoBehaviour
                 break;
             case "RightHandAnchor":
                 OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+                break;
+        }
+
+        switch (gameObject.tag)
+        {
+            case "Hold":
+                
+                m_Animator.SetBool("IsHeld", false);
                 break;
         }
     }

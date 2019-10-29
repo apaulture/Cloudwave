@@ -9,6 +9,7 @@ TagManager:
   - Build
   - Building
   - Tap
+  - Hold
   layers:
   - Default
   - TransparentFX
