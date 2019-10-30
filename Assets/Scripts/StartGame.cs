@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
     public GameObject noteController;
+    public Scene mainScene;
     Animator m_Animator;
     // Start is called before the first frame update
     void Start()
@@ -32,7 +34,17 @@ public class StartGame : MonoBehaviour
                 break;
         }
 
-        noteController.SetActive(true);
+        if (this.gameObject.name == "Start Button")
+        {
+            noteController.SetActive(true);
+        } else if (this.gameObject.name == "Play Button")
+        {
+            print("LOAD SCENE PAUL");
+            SceneManager.LoadSceneAsync("Paul");
+        }
+        
+
+
         // Instantiate(noteController, Vector3.zero, Quaternion.identity, transform.parent);
         m_Animator.SetBool("IsTouched", true); // play touch animation
         StartCoroutine(SetInactiveAfterTouching());
