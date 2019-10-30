@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NotesToSpawn : MonoBehaviour
+public class SceneChange : MonoBehaviour
 {
-    public static int notes = 4;
     // Start is called before the first frame update
     void Start()
     {

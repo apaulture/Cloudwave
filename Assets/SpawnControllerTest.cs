@@ -9,7 +9,7 @@ public class SpawnControllerTest : MonoBehaviour
     // [SerializeField] Sound
 
     public int[] numberOfNotes;
-    public Vector3[] positions = new Vector3[NotesToSpawn.notes];
+    public Vector3[] positions;
 
     public enum Note { Tap, Swipe, Hold };
     public Note[] noteType;

@@ -7,6 +7,8 @@ public class Up : MonoBehaviour
     Rigidbody m_Rigidbody;
     public float upSpeed;
     public static bool isActivated;
+
+    float timeAcelleration;
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,9 @@ public class Up : MonoBehaviour
     {
         if (isActivated)
         {
-            m_Rigidbody.AddForce(new Vector3(0, 1 * upSpeed, 0));
+            m_Rigidbody.velocity = new Vector3(0, (1 + timeAcelleration) * upSpeed, 0);
+            timeAcelleration += Time.deltaTime;
+            
         }
     }
 }

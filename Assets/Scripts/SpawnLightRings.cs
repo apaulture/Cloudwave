@@ -9,7 +9,7 @@ public class SpawnLightRings : MonoBehaviour
     
     void Start()
     {
-        for (int i = 10; i < elevator.transform.localScale.y * 2; i+=10)
+        for (int i = 10; i < elevator.transform.localScale.y * 2; i+=5)
         {
             Vector3 position = transform.position;
             position.y += i;
