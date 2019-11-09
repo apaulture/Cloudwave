@@ -132,6 +132,8 @@ MonoBehaviour:
   swipeSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
   holdSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
   heldParticle: {fileID: 0}
+  notesCollected: 0
+  totalNotes: 0
 --- !u!82 &-1806317562587547511
 AudioSource:
   m_ObjectHideFlags: 0
@@ -240,4 +242,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76892e36ad8184e08864d53d162c8212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 2.5
