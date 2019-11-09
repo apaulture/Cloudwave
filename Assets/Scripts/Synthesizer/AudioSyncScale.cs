@@ -35,17 +35,21 @@ public class AudioSyncScale : AudioSyncer
     {
         base.OnBeat();
 
+        
         StopCoroutine("MoveToScale");
         StartCoroutine("MoveToScale", beatScale);
         m_Renderer.material.SetColor("_EmissionColor", Color.white);
 
         Instantiate(note, transform.position, Quaternion.identity);
+        
 
         /*
+        StopCoroutine("MoveToScale");
+
         int randomNum = Random.Range(1, 3);
         if (randomNum == 1 && transform.name == "Diaphragm1")
         {
-            StopCoroutine("MoveToScale");
+            
             StartCoroutine("MoveToScale", beatScale);
             m_Renderer.material.SetColor("_EmissionColor", Color.white);
 
@@ -53,15 +57,15 @@ public class AudioSyncScale : AudioSyncer
         }
         else if (randomNum == 2 && transform.name == "Diaphragm2")
         {
-            StopCoroutine("MoveToScale");
+            
             StartCoroutine("MoveToScale", beatScale);
             m_Renderer.material.SetColor("_EmissionColor", Color.white);
             Instantiate(note, transform.position, Quaternion.identity);
         }
         */
-        
 
-        
+
+
         // print(DiaphragmController.notes);
     }
 
