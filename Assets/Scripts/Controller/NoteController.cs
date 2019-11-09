@@ -122,7 +122,7 @@ public class NoteController : MonoBehaviour
 
     IEnumerator SetInactiveAfterMissing()
     {
-        yield return new WaitForSeconds(2.33f); // set this time to after the note spawn and missed animation has played
+        yield return new WaitForSeconds(3.33f); // set this time to after the note spawn and missed animation has played
         gameObject.SetActive(false);
     }
 
