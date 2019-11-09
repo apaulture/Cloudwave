@@ -1,2 +1,0 @@
-# Cloudwave
-VGDA Project

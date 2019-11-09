@@ -20,7 +20,6 @@ public class LightrightTouch : MonoBehaviour
     {
         if (other.gameObject.name == "Elevator Floor")
         {
-            print("TOUCHED RING");
             OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
             OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
         }

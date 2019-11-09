@@ -5,8 +5,9 @@ using UnityEngine;
 public class NoteController : MonoBehaviour
 {
     public float vibrationTime;
-    public AudioClip clip1;
-    public AudioClip clip2;
+    public AudioClip tapSound;
+    public AudioClip swipeSound;
+    public AudioClip holdSound;
     public ParticleSystem heldParticle;
     float holdNoteTime;
 
@@ -40,30 +41,28 @@ public class NoteController : MonoBehaviour
         switch (gameObject.tag)
         {
             case "Tap":
+                
                 m_Animator.SetBool("IsTouched", true); // play touch animation
                 scoreManager.addPoint();
+                m_AudioSource.clip = tapSound;
+                m_AudioSource.Play();
 
-                // Randomly choose a clip to play when tap note is touched
-
-                int randomClip = Random.Range(1, 3);
-                switch (randomClip)
-                {
-                    case 1:
-                        //m_AudioSource.clip = clip1;
-                        break;
-                    case 2:
-                        //m_AudioSource.clip = clip2;
-                        break;
-                }
-
-                // Play "clip x" when touched
-                //m_AudioSource.Play();
-
+                
+                
                 StartCoroutine(SetInactiveAfterTouching());
                 break;
             case "Arrow":
                 m_Animator.SetBool("IsTouched", true); // play touch animation
+                scoreManager.addPoint();
+                m_AudioSource.clip = tapSound;
+                m_AudioSource.Play();
 
+                StartCoroutine(SetInactiveAfterTouching());
+                break;
+            case "Hold":
+                
+                m_AudioSource.clip = holdSound;
+                m_AudioSource.Play();
                 break;
         }
     }
@@ -86,12 +85,14 @@ public class NoteController : MonoBehaviour
             case "Hold":
                 
                 m_Animator.SetBool("IsHeld", true);
+                
                 break;
         }
 
         holdNoteTime += Time.deltaTime;
         if (holdNoteTime > 0.8f)
         {
+            scoreManager.addPoint();
             Vector3 position = gameObject.transform.position;
             Instantiate(heldParticle, position, Quaternion.identity, transform.parent);
             gameObject.SetActive(false);
@@ -129,7 +130,7 @@ public class NoteController : MonoBehaviour
     {
         // yield return new WaitForSeconds(vibrationTime); // How long to vibrate?
         // OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(.5f);
 
         gameObject.SetActive(false);
     }
