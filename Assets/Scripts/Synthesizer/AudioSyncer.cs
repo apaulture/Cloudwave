@@ -7,13 +7,19 @@ public class AudioSyncer : MonoBehaviour
     public float bias; // what spectrum value triggers "beat"
     public float timeStep; // interval between beats
     public float timeToBeat; // length of time for the object to scale up
-    public float timeToRest; // how fast object go to rest
+    public float restRate; // how fast object go to rest
 
     float m_PreviousAudioValue; // in current frame, did this value went above the bias? if it did, then we have a beat!
     float m_AudioValue;
     float m_Timer; // to keep track of timeStep interval
+    
 
     protected bool m_IsBeat; // is current object in "beating" state?
+
+    private void Start()
+    {
+        // timeStep = (60.0f / bpm) * beatIntervalRate;
+    }
 
     public virtual void OnBeat()
     {

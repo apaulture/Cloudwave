@@ -22,7 +22,7 @@ public class AudioSyncScale : AudioSyncer
 
         if (m_IsBeat) return; // stop here if the note is currently beating
 
-        transform.localScale = Vector3.Lerp(transform.localScale, restScale, timeToRest * Time.deltaTime); // if not, lerp scale to rest scale
+        transform.localScale = Vector3.Lerp(transform.localScale, restScale, restRate * Time.deltaTime); // if not, lerp scale to rest scale
 
         if (ringLit)
         {
@@ -35,16 +35,16 @@ public class AudioSyncScale : AudioSyncer
     {
         base.OnBeat();
 
-        /*
-        StopCoroutine("MoveToScale");
-        StartCoroutine("MoveToScale", beatScale);
         m_Renderer.material.SetColor("_EmissionColor", Color.white);
         NoteController.totalNotes++;
         Instantiate(note, transform.position, Quaternion.identity);
-        */
+
+        StopCoroutine("MoveToScale");
+        StartCoroutine("MoveToScale", beatScale);
         
         
-        int randomNum = Random.Range(1, 5);
+        /*
+        int randomNum = Random.Range(1, 3);
         if (randomNum == 1 && transform.name == "Diaphragm1")
         {
             StopCoroutine("MoveToScale");
@@ -61,6 +61,9 @@ public class AudioSyncScale : AudioSyncer
             NoteController.totalNotes++;
             Instantiate(note, transform.position, Quaternion.identity);
         }
+        */
+
+        /* For 2nd speaker
         else if (randomNum == 3 && transform.name == "Diaphragm3")
         {
             StopCoroutine("MoveToScale");
@@ -77,9 +80,7 @@ public class AudioSyncScale : AudioSyncer
             NoteController.totalNotes++;
             Instantiate(note, transform.position, Quaternion.identity);
         }
-
-        
-
+        */
         
         /* For 3rd speaker
         else if (randomNum == 5 && transform.name == "Diaphragm5")

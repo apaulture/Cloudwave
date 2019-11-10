@@ -5,20 +5,17 @@ using UnityEngine;
 public class MotionNoteController : MonoBehaviour
 {
     Vector3 direction;
-    Rigidbody m_Rigidbody;
     Animator m_Animator;
-
-    public GameObject speakerDirection;
-    public float speed;
+    float speed;
 
     void Start()
     {
         m_Animator = GetComponent<Animator>();
-        m_Rigidbody = GetComponent<Rigidbody>();
 
         direction = Vector3.back;
-        // direction = speakerDirection.transform.forward;
+        speed = NoteMotionController.noteSpeed;
 
+        // If the note's velocity is greater than 0, the note is coming from the speaker so play animation based on its velocity
         if (speed > 0)
         {
             m_Animator.SetBool("IsSpeakerNote", true);
@@ -32,6 +29,5 @@ public class MotionNoteController : MonoBehaviour
     void FixedUpdate()
     {
         transform.Translate(direction * Time.fixedDeltaTime * speed);
-        // m_Rigidbody.AddForce(direction * speed * Time.fixedDeltaTime);
     }
 }

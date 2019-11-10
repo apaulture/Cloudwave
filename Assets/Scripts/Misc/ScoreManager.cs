@@ -15,7 +15,6 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private ScoreCounter scoreCounter;
 
-
     public void addPoint()
     {
         currentPointTotal++;

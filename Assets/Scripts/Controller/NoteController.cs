@@ -29,7 +29,7 @@ public class NoteController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Touched with which hand?
+        // Start haptic feedback when touching
         switch (other.gameObject.name)
         {
             case "LeftHandAnchor":
@@ -104,6 +104,7 @@ public class NoteController : MonoBehaviour
         }
     }
 
+    // End haptic feedback after touching
     private void OnTriggerExit(Collider other)
     {
         switch (other.gameObject.name)
