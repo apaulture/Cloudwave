@@ -35,16 +35,19 @@ public class AudioSyncScale : AudioSyncer
     {
         base.OnBeat();
 
+        /*
         StopCoroutine("MoveToScale");
         StartCoroutine("MoveToScale", beatScale);
         m_Renderer.material.SetColor("_EmissionColor", Color.white);
         NoteController.totalNotes++;
         Instantiate(note, transform.position, Quaternion.identity);
+        */
         
-        /*
+        
         int randomNum = Random.Range(1, 5);
         if (randomNum == 1 && transform.name == "Diaphragm1")
         {
+            StopCoroutine("MoveToScale");
             StartCoroutine("MoveToScale", beatScale);
             m_Renderer.material.SetColor("_EmissionColor", Color.white);
             NoteController.totalNotes++;
@@ -52,6 +55,7 @@ public class AudioSyncScale : AudioSyncer
         }
         else if (randomNum == 2 && transform.name == "Diaphragm2")
         {
+            StopCoroutine("MoveToScale");
             StartCoroutine("MoveToScale", beatScale);
             m_Renderer.material.SetColor("_EmissionColor", Color.white);
             NoteController.totalNotes++;
@@ -59,6 +63,7 @@ public class AudioSyncScale : AudioSyncer
         }
         else if (randomNum == 3 && transform.name == "Diaphragm3")
         {
+            StopCoroutine("MoveToScale");
             StartCoroutine("MoveToScale", beatScale);
             m_Renderer.material.SetColor("_EmissionColor", Color.white);
             NoteController.totalNotes++;
@@ -66,13 +71,14 @@ public class AudioSyncScale : AudioSyncer
         }
         else if (randomNum == 4 && transform.name == "Diaphragm4")
         {
+            StopCoroutine("MoveToScale");
             StartCoroutine("MoveToScale", beatScale);
             m_Renderer.material.SetColor("_EmissionColor", Color.white);
             NoteController.totalNotes++;
             Instantiate(note, transform.position, Quaternion.identity);
         }
 
-        */
+        
 
         
         /* For 3rd speaker

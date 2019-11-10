@@ -59,7 +59,7 @@ public class AudioStoppedPlaying : MonoBehaviour
             text.SetActive(true);
             rankingText.text = message;
             collectedText.text = NoteController.notesCollected.ToString();
-            totalText.text = NoteController.totalNotes.ToString();
+            totalText.text = "/ " + NoteController.totalNotes.ToString();
         }
     }
 }
