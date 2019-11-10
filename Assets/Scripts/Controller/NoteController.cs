@@ -10,8 +10,9 @@ public class NoteController : MonoBehaviour
     public AudioClip holdSound;
     public ParticleSystem heldParticle;
     float holdNoteTime;
-    public float notesCollected = 0f;
-    public float totalNotes;
+
+    public static float notesCollected;
+    public static float totalNotes;
 
     Animator m_Animator;
     AudioSource m_AudioSource;
@@ -32,10 +33,10 @@ public class NoteController : MonoBehaviour
         switch (other.gameObject.name)
         {
             case "LeftHandAnchor":
-                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.LTouch);
+                OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
                 break;
             case "RightHandAnchor":
-                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.RTouch);
+                OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
                 break;
         }
 
@@ -69,33 +70,6 @@ public class NoteController : MonoBehaviour
         }
 
         notesCollected++;
-        float percentage = (notesCollected / totalNotes) * 100;
-        string message = percentage.ToString() + " ";
-
-        if(percentage >= .5)
-        {
-            message += "You collected 50% of the notes!";
-        }
-        else if(percentage >= .6)
-        {
-            message += "You collected 60% of the notes!";
-        }
-        else if(percentage >= .7)
-        {
-            message += "You collected 70% of the notes!";
-        }
-        else if(percentage >= .8)
-        {
-            message += "You collected 80% of the notes!";
-        }
-        else if(percentage >= .9)
-        {
-            message += "You collected 90% of the notes!";
-        }
-        else if(percentage >= 1)
-        {
-            message += "You collected 100% of the notes!";
-        }
     }
 
     // For hold note

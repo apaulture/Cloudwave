@@ -35,31 +35,59 @@ public class AudioSyncScale : AudioSyncer
     {
         base.OnBeat();
 
-        
         StopCoroutine("MoveToScale");
         StartCoroutine("MoveToScale", beatScale);
         m_Renderer.material.SetColor("_EmissionColor", Color.white);
-
+        NoteController.totalNotes++;
         Instantiate(note, transform.position, Quaternion.identity);
         
-
         /*
-        StopCoroutine("MoveToScale");
-
-        int randomNum = Random.Range(1, 3);
+        int randomNum = Random.Range(1, 5);
         if (randomNum == 1 && transform.name == "Diaphragm1")
         {
-            
             StartCoroutine("MoveToScale", beatScale);
             m_Renderer.material.SetColor("_EmissionColor", Color.white);
-
+            NoteController.totalNotes++;
             Instantiate(note, transform.position, Quaternion.identity);
         }
         else if (randomNum == 2 && transform.name == "Diaphragm2")
         {
-            
             StartCoroutine("MoveToScale", beatScale);
             m_Renderer.material.SetColor("_EmissionColor", Color.white);
+            NoteController.totalNotes++;
+            Instantiate(note, transform.position, Quaternion.identity);
+        }
+        else if (randomNum == 3 && transform.name == "Diaphragm3")
+        {
+            StartCoroutine("MoveToScale", beatScale);
+            m_Renderer.material.SetColor("_EmissionColor", Color.white);
+            NoteController.totalNotes++;
+            Instantiate(note, transform.position, Quaternion.identity);
+        }
+        else if (randomNum == 4 && transform.name == "Diaphragm4")
+        {
+            StartCoroutine("MoveToScale", beatScale);
+            m_Renderer.material.SetColor("_EmissionColor", Color.white);
+            NoteController.totalNotes++;
+            Instantiate(note, transform.position, Quaternion.identity);
+        }
+
+        */
+
+        
+        /* For 3rd speaker
+        else if (randomNum == 5 && transform.name == "Diaphragm5")
+        {
+            StartCoroutine("MoveToScale", beatScale);
+            m_Renderer.material.SetColor("_EmissionColor", Color.white);
+            NoteController.totalNotes++;
+            Instantiate(note, transform.position, Quaternion.identity);
+        }
+        else if (randomNum == 6 && transform.name == "Diaphragm6")
+        {
+            StartCoroutine("MoveToScale", beatScale);
+            m_Renderer.material.SetColor("_EmissionColor", Color.white);
+            NoteController.totalNotes++;
             Instantiate(note, transform.position, Quaternion.identity);
         }
         */

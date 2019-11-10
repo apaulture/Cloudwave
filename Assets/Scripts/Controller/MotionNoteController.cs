@@ -8,6 +8,7 @@ public class MotionNoteController : MonoBehaviour
     Rigidbody m_Rigidbody;
     Animator m_Animator;
 
+    public GameObject speakerDirection;
     public float speed;
 
     void Start()
@@ -16,6 +17,7 @@ public class MotionNoteController : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
 
         direction = Vector3.back;
+        // direction = speakerDirection.transform.forward;
 
         if (speed > 0)
         {
