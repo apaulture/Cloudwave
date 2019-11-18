@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NoteController : MonoBehaviour
 {
-    public float vibrationTime;
     public AudioClip tapSound;
     public AudioClip swipeSound;
     public AudioClip holdSound;
@@ -23,6 +22,7 @@ public class NoteController : MonoBehaviour
         m_Animator = GetComponent<Animator>();
         m_AudioSource = GetComponent<AudioSource>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        m_Animator.SetBool("IsSpeakerNote", true);
 
         StartCoroutine(SetInactiveAfterMissing());
     }
@@ -49,9 +49,9 @@ public class NoteController : MonoBehaviour
                 scoreManager.addPoint();
                 m_AudioSource.clip = tapSound;
                 m_AudioSource.Play();
+                notesCollected++;
 
-                
-                
+
                 StartCoroutine(SetInactiveAfterTouching());
                 break;
             case "Arrow":
@@ -69,7 +69,7 @@ public class NoteController : MonoBehaviour
                 break;
         }
 
-        notesCollected++;
+        
     }
 
     // For hold note
@@ -107,15 +107,7 @@ public class NoteController : MonoBehaviour
     // End haptic feedback after touching
     private void OnTriggerExit(Collider other)
     {
-        switch (other.gameObject.name)
-        {
-            case "LeftHandAnchor":
-                OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
-                break;
-            case "RightHandAnchor":
-                OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
-                break;
-        }
+        
 
         switch (gameObject.tag)
         {
@@ -140,10 +132,5 @@ public class NoteController : MonoBehaviour
         yield return new WaitForSeconds(.5f);
 
         gameObject.SetActive(false);
-    }
-
-    IEnumerator VibrationTime()
-    {
-        yield return new WaitForSeconds(vibrationTime);
     }
 }

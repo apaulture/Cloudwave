@@ -25,41 +25,13 @@ public class ElevatorButtonController : MonoBehaviour
             ElevatorMotionController.isActivated = true;
         }
 
-        // For VR testing
-        switch (other.gameObject.name)
+        if (other.gameObject.name == "LeftHandAnchor" || other.gameObject.name == "RightHandAnchor")
         {
-            case "LeftHandAnchor":
-                ElevatorMotionController.isActivated = true;
-                m_Material.SetColor("_Color", new Color(0, 255, 0, 0.78f));
+            ElevatorMotionController.isActivated = true;
+            m_Material.SetColor("_Color", new Color(0, 255, 0, 0.78f));
 
-                otherAudioSource.Stop();
-                audioSource.Play();
-                
-                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.LTouch);
-                break;
-            case "RightHandAnchor":
-                ElevatorMotionController.isActivated = true;
-                m_Material.SetColor("_Color", new Color(0, 255, 0, 0.78f));
-
-                otherAudioSource.Stop();
-                audioSource.Play();
-                
-                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.RTouch);
-                break;
-        }
-        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        switch (other.gameObject.name)
-        {
-            case "LeftHandAnchor":
-                OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
-                break;
-            case "RightHandAnchor":
-                OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
-                break;
+            otherAudioSource.Stop();
+            audioSource.Play();
         }
     }
 }

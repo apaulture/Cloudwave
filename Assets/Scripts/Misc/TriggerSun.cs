@@ -7,15 +7,31 @@ using UnityEngine;
 public class TriggerSun : MonoBehaviour
 {
     public GameObject sun;
-    public Animator m_Animator;
+    public float waitBeforeLerp;
+    public static bool sunTriggered;
+    Animator m_Animator;
     
     void Start()
     {
+        
         m_Animator = sun.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        m_Animator.SetBool("SunUp", true);
+        if (other.name == "Elevator Floor")
+        {
+            m_Animator.SetBool("SunUp", true);
+            StartCoroutine(wait());
+            
+            
+        }
+        
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(waitBeforeLerp);
+        sunTriggered = true;
     }
 }

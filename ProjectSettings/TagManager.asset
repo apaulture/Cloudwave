@@ -8,6 +8,8 @@ TagManager:
   - Tap
   - Building
   - Hold
+  - Body
+  - Hand
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Spotlight
   - 
   - 
   - 
