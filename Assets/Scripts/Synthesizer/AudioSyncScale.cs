@@ -6,7 +6,11 @@ public class AudioSyncScale : AudioSyncer
     public Vector3 beatScale;
     public Vector3 restScale;
     public GameObject note;
-    
+    public Color32 leftBodyColor;
+    public Color32 rightBodyColor;
+    public Color32 leftHandsColor;
+    public Color32 rightHandsColor;
+    Color restColor;
 
     Renderer m_Renderer;
     bool ringLit;
@@ -26,7 +30,16 @@ public class AudioSyncScale : AudioSyncer
 
         if (ringLit)
         {
-            Color restColor = Color32.Lerp(Color.white, Color.black, Time.time);
+            switch (transform.tag)
+            {
+                case "Hand":
+                    restColor = Color32.Lerp(leftHandsColor, Color.black, Time.time);
+                    break;
+                case "Body":
+                    restColor = Color32.Lerp(leftBodyColor, Color.black, Time.time);
+                    break;
+            }
+
             m_Renderer.material.SetColor("_EmissionColor", restColor);
         }
     }
@@ -35,74 +48,140 @@ public class AudioSyncScale : AudioSyncer
     {
         base.OnBeat();
 
+        // Randomize spawn position of notes
+        Vector3 position = transform.position;
+        position.x += Random.Range(-0.3f, 0.3f);
+        position.y += Random.Range(-0.3f, 0.3f);
+
         /*
-        m_Renderer.material.SetColor("_EmissionColor", Color.white);
-        NoteController.totalNotes++;
-        Instantiate(note, transform.position, Quaternion.identity);
+        int bodyPosition = 0;
+        int notesRemaining;
+        bool left = false, center = false, right = false;
 
-        StopCoroutine("MoveToScale");
-        StartCoroutine("MoveToScale", beatScale);
-        */
-        
-        
-        int randomNum = Random.Range(1, 3);
-        if (randomNum == 1 && transform.name == "Diaphragm1")
+        // Body position: left (1), center (2), right (3)
+        if (left == false && center == false && right == false)
         {
-            StopCoroutine("MoveToScale");
-            StartCoroutine("MoveToScale", beatScale);
-            m_Renderer.material.SetColor("_EmissionColor", Color.white);
-            NoteController.totalNotes++;
-            Instantiate(note, transform.position, Quaternion.identity);
-        }
-        else if (randomNum == 2 && transform.name == "Diaphragm2")
-        {
-            StopCoroutine("MoveToScale");
-            StartCoroutine("MoveToScale", beatScale);
-            m_Renderer.material.SetColor("_EmissionColor", Color.white);
-            NoteController.totalNotes++;
-            Instantiate(note, transform.position, Quaternion.identity);
-        }
-        
-
-        /* For 2nd speaker
-        else if (randomNum == 3 && transform.name == "Diaphragm3")
-        {
-            StopCoroutine("MoveToScale");
-            StartCoroutine("MoveToScale", beatScale);
-            m_Renderer.material.SetColor("_EmissionColor", Color.white);
-            NoteController.totalNotes++;
-            Instantiate(note, transform.position, Quaternion.identity);
-        }
-        else if (randomNum == 4 && transform.name == "Diaphragm4")
-        {
-            StopCoroutine("MoveToScale");
-            StartCoroutine("MoveToScale", beatScale);
-            m_Renderer.material.SetColor("_EmissionColor", Color.white);
-            NoteController.totalNotes++;
-            Instantiate(note, transform.position, Quaternion.identity);
-        }
-        */
-        
-        /* For 3rd speaker
-        else if (randomNum == 5 && transform.name == "Diaphragm5")
-        {
-            StartCoroutine("MoveToScale", beatScale);
-            m_Renderer.material.SetColor("_EmissionColor", Color.white);
-            NoteController.totalNotes++;
-            Instantiate(note, transform.position, Quaternion.identity);
-        }
-        else if (randomNum == 6 && transform.name == "Diaphragm6")
-        {
-            StartCoroutine("MoveToScale", beatScale);
-            m_Renderer.material.SetColor("_EmissionColor", Color.white);
-            NoteController.totalNotes++;
-            Instantiate(note, transform.position, Quaternion.identity);
+            bodyPosition = Random.Range(1, 4);
         }
         */
 
+        int bodyPosition = Random.Range(1, 4);
+
+        // left position
+        if (bodyPosition == 1)
+        {
+            /*
+            notesRemaining = 6;
+            left = true;
+            center = false;
+            right = false;
+            */
+
+            // while (notesRemaining > 0)
+            {
+                int leftPosition = Random.Range(1, 6);
+                if (leftPosition <= 2 && transform.name == "LBLH")
+                {
+                    Instantiate(note, position, Quaternion.identity, transform.parent);
+                    StopCoroutine("MoveToScale");
+                    StartCoroutine("MoveToScale", beatScale);
+                    m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+                    NoteController.totalNotes++;
+                    // notesRemaining--;
+                }
+                else if (leftPosition == 3 && transform.name == "LB")
+                {
+                    Instantiate(note, position, Quaternion.identity, transform.parent);
+                    StopCoroutine("MoveToScale");
+                    StartCoroutine("MoveToScale", beatScale);
+                    m_Renderer.material.SetColor("_EmissionColor", leftBodyColor);
+                    NoteController.totalNotes++;
+                    // notesRemaining--;
+                }
+                else if (leftPosition > 3 && transform.name == "CBLHLBRH")
+                {
+                    Instantiate(note, position, Quaternion.identity, transform.parent);
+                    StopCoroutine("MoveToScale");
+                    StartCoroutine("MoveToScale", beatScale);
+                    m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+                    NoteController.totalNotes++;
+                    // notesRemaining--;
+                }
+            }
+
+            // After notes remaining reaches 0...
+            // left = false;
+        }
+
+        // center position
+        else if (bodyPosition == 2)
+        {
 
 
-        // print(DiaphragmController.notes);
+            // while (notesRemaining > 0)
+            {
+                int centerPosition = Random.Range(1, 3);
+                if (centerPosition == 1 && transform.name == "CBLHLBRH")
+                {
+                    Instantiate(note, position, Quaternion.identity, transform.parent);
+                    StopCoroutine("MoveToScale");
+                    StartCoroutine("MoveToScale", beatScale);
+                    m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+                    NoteController.totalNotes++;
+
+                }
+                else if (centerPosition == 2 && transform.name == "CBRHRBLH")
+                {
+                    Instantiate(note, position, Quaternion.identity, transform.parent);
+                    StopCoroutine("MoveToScale");
+                    StartCoroutine("MoveToScale", beatScale);
+                    m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+                    NoteController.totalNotes++;
+
+                }
+            }
+
+            // center = false;
+        }
+
+        // right position
+        else if (bodyPosition == 3)
+        {
+
+            // while (notesRemaining > 0)
+            {
+                int rightPosition = Random.Range(1, 6);
+                if (rightPosition <= 2 && transform.name == "CBRHRBLH")
+                {
+                    Instantiate(note, position, Quaternion.identity, transform.parent);
+                    StopCoroutine("MoveToScale");
+                    StartCoroutine("MoveToScale", beatScale);
+                    m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+                    NoteController.totalNotes++;
+
+                }
+                else if (rightPosition == 3 && transform.name == "RB")
+                {
+                    Instantiate(note, position, Quaternion.identity, transform.parent);
+                    StopCoroutine("MoveToScale");
+                    StartCoroutine("MoveToScale", beatScale);
+                    m_Renderer.material.SetColor("_EmissionColor", rightBodyColor);
+                    NoteController.totalNotes++;
+
+                }
+                else if (rightPosition > 3 && transform.name == "RBRH")
+                {
+                    Instantiate(note, position, Quaternion.identity, transform.parent);
+                    StopCoroutine("MoveToScale");
+                    StartCoroutine("MoveToScale", beatScale);
+                    m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+                    NoteController.totalNotes++;
+
+                }
+            }
+
+            // right = false;
+        }
     }
 
     IEnumerator MoveToScale(Vector3 _target)
@@ -118,7 +197,7 @@ public class AudioSyncScale : AudioSyncer
             _timer += Time.deltaTime;
 
             transform.localScale = _current; // Adjust the transform local scale up to the value produced by lerp
-            
+
             
 
             yield return null;
@@ -127,28 +206,6 @@ public class AudioSyncScale : AudioSyncer
         ringLit = true;
 
         m_IsBeat = false;
+        
     }
 }
-
-/*
- *
- * string randomDiaphragm = "Diaphragm" + randomNum;
-        print(randomDiaphragm);
-        switch (randomDiaphragm)
-        {
-            case "Diaphragm1":
-                if (transform.name == "Diaphragm1")
-                {
-                    Instantiate(note, transform.position, Quaternion.identity);
-                    
-                }
-                break;
-            case "Diaphragm2":
-                if (transform.name == "Diaphragm2")
-                {
-                    Instantiate(note, transform.position, Quaternion.identity);
-
-                }
-                break;
-        }
-*/

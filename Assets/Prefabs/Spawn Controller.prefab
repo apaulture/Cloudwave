@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7450579835888480115}
-  - component: {fileID: 7450579835888480114}
   - component: {fileID: 3266015766761066334}
+  - component: {fileID: -2314088013852615093}
   m_Layer: 0
   m_Name: Spawn Controller
   m_TagString: Untagged
@@ -32,40 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7450579835888480114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7450579835888480112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: effae892e4eb14881a7f00466d59ab94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tap: {fileID: 3068826882984572409, guid: 30971ca3dc5b742b2a4770db9745be19, type: 3}
-  swipe: {fileID: 8404334459167425903, guid: dd6bca0a55fdb4e358cbc48ede5ca675, type: 3}
-  hold: {fileID: 8415396781326659588, guid: f41e42577aa5e4080a10e05b2bd9f5a0, type: 3}
-  bpm: 115
-  timeBetweenNotes: 1.043478
-  numberOfNotes: 30
-  initialWait: 7.52
-  note1: 0
-  position1: {x: -0.2, y: 1, z: 0.5}
-  wait1: 1.0434783
-  note2: 0
-  position2: {x: 0.2, y: 1, z: 0.5}
-  wait2: 1.0434783
-  note3: 0
-  position3: {x: -0.2, y: 1, z: 0.5}
-  wait3: 1.0434783
-  note4: 0
-  position4: {x: 0.2, y: 0.75, z: 0.5}
-  wait4: 1.0434783
-  note5: 0
-  position5: {x: -0.2, y: 1.25, z: 0.5}
-  wait5: 1.0434783
 --- !u!82 &3266015766761066334
 AudioSource:
   m_ObjectHideFlags: 0
@@ -162,3 +128,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2314088013852615093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450579835888480112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33518f6e9733148489a8ce701be762ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bpm: 0
+  initialWait: 0
+  reachDistance: 0.7
+  noteTypes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  planeDegree: 
+  heightDegree: 
+  noteType: 
+  waitMultiplier: []
