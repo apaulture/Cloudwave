@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56522e2dd801245abb443434e1ff288c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tapSound: {fileID: 8300000, guid: e1fad596f0a4e4d41b10f12203fb62ee, type: 3}
+  tapSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
   swipeSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
   holdSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
   heldParticle: {fileID: 0}
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76892e36ad8184e08864d53d162c8212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.3
+  speed: 4
 --- !u!114 &-4684878380170594659
 MonoBehaviour:
   m_ObjectHideFlags: 0

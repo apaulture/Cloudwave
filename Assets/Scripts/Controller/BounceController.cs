@@ -14,7 +14,7 @@ public class BounceController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Building")
+        if (other.tag == "Object")
         {
             m_AudioSource.Play();
         }

@@ -8,6 +8,7 @@ public class AudioStoppedPlaying : MonoBehaviour
     public TextMesh rankingText;
     public TextMesh collectedText;
     public TextMesh totalText;
+    public GameObject elevatorgate;
 
     AudioSource m_AudioSource;
 
@@ -56,6 +57,7 @@ public class AudioStoppedPlaying : MonoBehaviour
             rankingText.text = message;
             collectedText.text = NoteController.notesCollected.ToString();
             totalText.text = "/ " + NoteController.totalNotes.ToString();
+            elevatorgate.GetComponent<Animator>().SetBool("SongEnded", true);
         }
     }
 }

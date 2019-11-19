@@ -8,23 +8,36 @@ public class ElevatorMotionController : MonoBehaviour
     public float upSpeed;
     public static bool isActivated;
 
+    bool stopGoingUp = true;
+    float velocity;
     float timeAcceleration;
+    float timeDececeleration;
     
-    // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        
-        // m_Rigidbody.velocity += new Vector3(0,1,0);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if (isActivated)
+        velocity = m_Rigidbody.velocity.magnitude;
+        if (isActivated & stopGoingUp)
         {
             m_Rigidbody.velocity = new Vector3(0, (1 + timeAcceleration) * upSpeed, 0);
             timeAcceleration += Time.deltaTime;
+            
+        }
+
+        if (TriggerSun.titleTriggered)
+        {
+            stopGoingUp = false;
+
+            timeDececeleration += Time.deltaTime;
+            if (velocity > 0 && timeDececeleration < 9.39f)
+            {
+                m_Rigidbody.AddForce(new Vector3(0, -1, 0));
+            }
+            
             
         }
     }
