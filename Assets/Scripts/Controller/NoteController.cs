@@ -5,10 +5,6 @@ using UnityEngine;
 public class NoteController : MonoBehaviour
 {
     public AudioClip tapSound;
-    public AudioClip swipeSound;
-    public AudioClip holdSound;
-    public ParticleSystem heldParticle;
-    float holdNoteTime;
 
     public static float notesCollected;
     public static float totalNotes;
@@ -22,98 +18,38 @@ public class NoteController : MonoBehaviour
         m_Animator = GetComponent<Animator>();
         m_AudioSource = GetComponent<AudioSource>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-        m_Animator.SetBool("IsSpeakerNote", true);
+
+        if (gameObject.name == "Tap(Clone)")
+        {
+            m_Animator.SetBool("IsSpeakerNote", true);
+        }
+        
+
+        if (gameObject.name == "Body(Clone)")
+        {
+            m_Animator.SetBool("IsBodySpeakerNote", true);
+        }
 
         StartCoroutine(SetInactiveAfterMissing());
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Start haptic feedback when touching
-        switch (other.gameObject.name)
-        {
-            case "LeftHandAnchor":
-                OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
-                break;
-            case "RightHandAnchor":
-                OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
-                break;
-        }
-
-        // Behavior of note after touched
         switch (gameObject.tag)
         {
             case "Tap":
+                //if (other.gameObject.name == "LeftHandAnchor" || other.gameObject.name == "RightHandAnchor")
+                {
+                    m_Animator.SetBool("IsTouched", true); // play touch animation
+                    scoreManager.addPoint();
+                    m_AudioSource.clip = tapSound;
+                    m_AudioSource.Play();
+                    notesCollected++;
+
+
+                    StartCoroutine(SetInactiveAfterTouching());
+                }
                 
-                m_Animator.SetBool("IsTouched", true); // play touch animation
-                scoreManager.addPoint();
-                m_AudioSource.clip = tapSound;
-                m_AudioSource.Play();
-                notesCollected++;
-
-
-                StartCoroutine(SetInactiveAfterTouching());
-                break;
-            case "Arrow":
-                m_Animator.SetBool("IsTouched", true); // play touch animation
-                scoreManager.addPoint();
-                m_AudioSource.clip = tapSound;
-                m_AudioSource.Play();
-
-                StartCoroutine(SetInactiveAfterTouching());
-                break;
-            case "Hold":
-                
-                m_AudioSource.clip = holdSound;
-                m_AudioSource.Play();
-                break;
-        }
-
-        
-    }
-
-    // For hold note
-    private void OnTriggerStay(Collider other)
-    {
-        switch (other.gameObject.name)
-        {
-            case "LeftHandAnchor":
-                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.LTouch);
-                break;
-            case "RightHandAnchor":
-                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.RTouch);
-                break;
-        }
-
-        switch (gameObject.tag)
-        {
-            case "Hold":
-                
-                m_Animator.SetBool("IsHeld", true);
-                
-                break;
-        }
-
-        holdNoteTime += Time.deltaTime;
-        if (holdNoteTime > 0.8f)
-        {
-            scoreManager.addPoint();
-            Vector3 position = gameObject.transform.position;
-            Instantiate(heldParticle, position, Quaternion.identity, transform.parent);
-            gameObject.SetActive(false);
-        }
-    }
-
-    // End haptic feedback after touching
-    private void OnTriggerExit(Collider other)
-    {
-        
-
-        switch (gameObject.tag)
-        {
-            case "Hold":
-                
-                m_Animator.SetBool("IsHeld", false);
                 break;
         }
     }

@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Body
+  - Hand
+  - Hold
+  - Building
+  - Tap
+  - Arrow
+  - Floor
   layers:
   - Default
   - TransparentFX

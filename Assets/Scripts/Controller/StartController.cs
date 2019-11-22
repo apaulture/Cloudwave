@@ -19,33 +19,26 @@ public class StartController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Start haptic feedback when touching
-        switch (other.gameObject.name)
+        if (other.gameObject.name == "LeftHandAnchor" || other.gameObject.name == "RightHandAnchor")
         {
-            case "LeftHandAnchor":
-                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.LTouch);
-                break;
-            case "RightHandAnchor":
-                OVRInput.SetControllerVibration(0.2f, 0.2f, OVRInput.Controller.RTouch);
-                break;
+            // Start music
+            audioController.SetActive(true);
+            audioDelay.SetActive(true);
+
+            // Activate dance ring and aura
+            boundaryLight.SetActive(true);
+            gameBoundary.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0, 0.952941176470588f, 0.145098039215686f));
+
+            // Start button touched animation
+            m_Animator.SetBool("IsTouched", true);
+            StartCoroutine(SetInactiveAfterTouching());
         }
-
-        // Start music
-        audioController.SetActive(true);
-        audioDelay.SetActive(true);
-
-        // Activate dance ring and aura
-        boundaryLight.SetActive(true);
-        gameBoundary.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.1854097f, 0.5566038f, 0.1759078f));
-
-        // Start button touched animation
-        m_Animator.SetBool("IsTouched", true);
-        StartCoroutine(SetInactiveAfterTouching());
+            
     }
 
     IEnumerator SetInactiveAfterTouching()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.75f);
         gameObject.SetActive(false);
     }
 }

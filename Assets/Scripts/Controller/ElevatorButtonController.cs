@@ -8,6 +8,9 @@ public class ElevatorButtonController : MonoBehaviour
     AudioSource audioSource;
     public GameObject controller;
     AudioSource otherAudioSource;
+    public Collider playerCollider;
+    float playTime;
+    bool buttonTouched;
 
     void Start()
     {
@@ -15,23 +18,40 @@ public class ElevatorButtonController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         otherAudioSource = controller.GetComponent<AudioSource>();
     }
+
+    private void Update()
+    {
+        if (buttonTouched)
+        {
+            playTime += Time.deltaTime;
+        }
+
+        if (playTime > 102)
+        {
+            audioSource.volume -= Time.deltaTime * 0.3f;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // Without headset
         if (other.name == "VirtualHand")
         {
             m_Material.SetColor("_Color", new Color(0, 255, 0, 0.78f));
-            audioSource.Play();
+            audioSource.PlayDelayed(0.4f);
+            playerCollider.enabled = false;
             ElevatorMotionController.isActivated = true;
         }
 
         if (other.gameObject.name == "LeftHandAnchor" || other.gameObject.name == "RightHandAnchor")
         {
+            buttonTouched = true;
             ElevatorMotionController.isActivated = true;
             m_Material.SetColor("_Color", new Color(0, 255, 0, 0.78f));
-
+            playerCollider.enabled = false;
             otherAudioSource.Stop();
-            audioSource.Play();
+            audioSource.PlayDelayed(0.4f);
+            GetComponent<Collider>().enabled = false;
         }
     }
 }

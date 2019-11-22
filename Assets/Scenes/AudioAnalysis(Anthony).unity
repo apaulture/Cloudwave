@@ -173,6 +173,7 @@ MonoBehaviour:
   beatTimes: []
   totalNotes: 0
   nextTime: 0
+  songController: {fileID: 1785287211}
 --- !u!135 &751010754
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -448,8 +449,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2f7105f90c3708149b67491e1d2434dd, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 204bcfe9dc57c20478a92ce06ac3d686, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -548,7 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   realTimeSamples: 0
   preProcessSamples: 1
-  beatChecker: {fileID: 0}
+  bc: {fileID: 751010753}
 --- !u!4 &1785287212
 Transform:
   m_ObjectHideFlags: 0

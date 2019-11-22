@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3068826882984572385}
   - component: {fileID: -1806317562587547511}
   - component: {fileID: -3191985117310021803}
+  - component: {fileID: -1317669394282534633}
   m_Layer: 0
   m_Name: Body
   m_TagString: Tap
@@ -30,13 +31,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3068826882984572409}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 35.58699, y: 1.596682, z: 35.58699}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!33 &3068826882984572415
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -44,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3068826882984572409}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4068373912626513877, guid: 54ed03077baefc446851cc8773744ca3, type: 3}
 --- !u!23 &3068826882984572414
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94,7 +95,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.006567909
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &3068826882984572410
 Animator:
@@ -127,10 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56522e2dd801245abb443434e1ff288c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tapSound: {fileID: 8300000, guid: e1fad596f0a4e4d41b10f12203fb62ee, type: 3}
-  swipeSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
-  holdSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
-  heldParticle: {fileID: 0}
+  tapSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
 --- !u!82 &-1806317562587547511
 AudioSource:
   m_ObjectHideFlags: 0
@@ -143,7 +141,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e1fad596f0a4e4d41b10f12203fb62ee, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -239,4 +237,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76892e36ad8184e08864d53d162c8212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.3
+  speed: 4
+--- !u!114 &-1317669394282534633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3068826882984572409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492baf1fb6cf74dae8cb676982496d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feedbackStrength: 1
