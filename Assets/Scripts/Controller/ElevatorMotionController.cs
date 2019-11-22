@@ -4,22 +4,60 @@ using UnityEngine;
 
 public class ElevatorMotionController : MonoBehaviour
 {
-    Rigidbody m_Rigidbody;
     public float upSpeed;
     public static bool isActivated;
 
     bool stopGoingUp = true;
-    float velocity;
+    Vector3 velocity = new Vector3(0f, 0f, 0f);
     float timeAcceleration;
     float timeDececeleration;
     float currentVelocity;
 
+    bool isAccelerating = true;
+    bool isDecelerating = false;
+
 
     void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
+
     }
 
+    void Update()
+    {
+        transform.Translate(velocity * Time.deltaTime);
+
+        if (isActivated)
+        {
+            if(isAccelerating)
+            {
+                velocity.y += upSpeed * Time.deltaTime;
+                if(velocity.y >= 5.4f)
+                {
+                    velocity.y = 5.4f;
+                    isAccelerating = false;
+                }
+            }
+            else if(isDecelerating)
+            {
+                velocity.y -= 0.32f * Time.deltaTime;
+                if (velocity.y <= 0f)
+                {
+                    velocity.y = 0f;
+                    isDecelerating = false;
+                }
+            }
+        }
+
+
+        if (TriggerSun.titleTriggered)
+        {
+            isDecelerating = true;
+        }
+    }
+}
+
+/*
+ * 
     void FixedUpdate()
     {
         
@@ -50,8 +88,8 @@ public class ElevatorMotionController : MonoBehaviour
             {
                 m_Rigidbody.velocity = new Vector3(0,currentVelocity - 1,0);
             }
-            */
+            
             
         }
     }
-}
+*/

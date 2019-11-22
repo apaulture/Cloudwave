@@ -25,6 +25,7 @@ public class SongController : MonoBehaviour {
 	public bool realTimeSamples = true;
 	public bool preProcessSamples = false;
     public BeatChecker bc;
+    public BeatChecker bc2, bc3, bc4, bc5, bc6;
     bool ready = false;
     
 
@@ -154,7 +155,12 @@ public class SongController : MonoBehaviour {
 		}
 
         bc.FindTheGoodBeats(preProcessedSpectralFluxAnalyzer.spectralFluxSamples);
-	}
+        bc2.FindTheGoodBeats(preProcessedSpectralFluxAnalyzer.spectralFluxSamples);
+        bc3.FindTheGoodBeats(preProcessedSpectralFluxAnalyzer.spectralFluxSamples);
+        bc4.FindTheGoodBeats(preProcessedSpectralFluxAnalyzer.spectralFluxSamples);
+        bc5.FindTheGoodBeats(preProcessedSpectralFluxAnalyzer.spectralFluxSamples);
+        bc6.FindTheGoodBeats(preProcessedSpectralFluxAnalyzer.spectralFluxSamples);
+    }
 
     public void Play()
     {

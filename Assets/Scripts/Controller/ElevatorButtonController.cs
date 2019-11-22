@@ -34,23 +34,15 @@ public class ElevatorButtonController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Without headset
-        if (other.name == "VirtualHand")
-        {
-            m_Material.SetColor("_Color", new Color(0, 255, 0, 0.78f));
-            audioSource.PlayDelayed(0.4f);
-            playerCollider.enabled = false;
-            ElevatorMotionController.isActivated = true;
-        }
 
-        if (other.gameObject.name == "LeftHandAnchor" || other.gameObject.name == "RightHandAnchor")
+        if (other.gameObject.name == "LeftHandAnchor" || other.gameObject.name == "RightHandAnchor" || other.gameObject.name == "VirtualHand")
         {
             buttonTouched = true;
             ElevatorMotionController.isActivated = true;
             m_Material.SetColor("_Color", new Color(0, 255, 0, 0.78f));
             playerCollider.enabled = false;
             otherAudioSource.Stop();
-            audioSource.PlayDelayed(0.4f);
+            audioSource.PlayDelayed(0.2f);
             GetComponent<Collider>().enabled = false;
         }
     }

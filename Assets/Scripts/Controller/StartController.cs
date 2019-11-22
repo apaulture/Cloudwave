@@ -19,7 +19,7 @@ public class StartController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "LeftHandAnchor" || other.gameObject.name == "RightHandAnchor")
+        //if (other.gameObject.name == "LeftHandAnchor" || other.gameObject.name == "RightHandAnchor")
         {
             // Start music
             audioController.SetActive(true);

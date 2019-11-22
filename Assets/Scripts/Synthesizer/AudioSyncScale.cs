@@ -10,6 +10,7 @@ public class AudioSyncScale : AudioSyncer
     public Color32 rightBodyColor;
     public Color32 leftHandsColor;
     public Color32 rightHandsColor;
+    public Color32 restColor1;
     Color restColor;
 
     Renderer m_Renderer;
@@ -33,10 +34,10 @@ public class AudioSyncScale : AudioSyncer
             switch (transform.tag)
             {
                 case "Hand":
-                    restColor = Color32.Lerp(leftHandsColor, Color.black, Time.time);
+                    restColor = Color32.Lerp(leftHandsColor, restColor1, Time.time);
                     break;
                 case "Body":
-                    restColor = Color32.Lerp(leftBodyColor, Color.black, Time.time);
+                    restColor = Color32.Lerp(leftBodyColor, restColor1, Time.time);
                     break;
             }
 
@@ -54,25 +55,8 @@ public class AudioSyncScale : AudioSyncer
         position.y += Random.Range(-0.2f, 0.2f);
         Vector3 positionBody = transform.position;
 
-        /*
-        int bodyPosition = 0;
-        int notesRemaining;
-        bool left = false, center = false, right = false;
+        
 
-        // Body position: left (1), center (2), right (3)
-        if (left == false && center == false && right == false)
-        {
-            bodyPosition = Random.Range(1, 4);
-        }
-        */
-
-        /*
-        Instantiate(note, position, Quaternion.identity, transform.parent);
-        StopCoroutine("MoveToScale");
-        StartCoroutine("MoveToScale", beatScale);
-        m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
-        NoteController.totalNotes++;
-        */
 
         
         int bodyPosition = Random.Range(1, 4);
@@ -161,6 +145,7 @@ public class AudioSyncScale : AudioSyncer
         
     
     }
+
 
     IEnumerator MoveToScale(Vector3 _target)
     {
