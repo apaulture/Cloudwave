@@ -22,7 +22,7 @@ public class AudioStoppedPlaying : MonoBehaviour
 
     void Update()
     {
-        percentage = (NoteController.notesCollected / NoteController.totalNotes);
+        percentage = (NoteController.notesCollected - 15 / NoteController.totalNotes);
         // print("Collected " + NoteController.notesCollected + " / " + NoteController.totalNotes + " | " + percentage + "%");
 
         // Show scoreboard after song has finished playing
@@ -55,7 +55,7 @@ public class AudioStoppedPlaying : MonoBehaviour
 
             scoreBoard.SetActive(true);
             rankingText.text = message;
-            collectedText.text = NoteController.notesCollected.ToString();
+            collectedText.text = (NoteController.notesCollected - 15).ToString();
             totalText.text = " / " + NoteController.totalNotes.ToString();
             elevatorgate.GetComponent<Animator>().SetBool("SongEnded", true);
         }
