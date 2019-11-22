@@ -43,20 +43,6 @@ public class StartController : MonoBehaviour
         StartCoroutine(SetInactiveAfterTouching());
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        // End haptic feedback after touching
-        switch (other.gameObject.name)
-        {
-            case "LeftHandAnchor":
-                OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
-                break;
-            case "RightHandAnchor":
-                OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
-                break;
-        }
-    }
-
     IEnumerator SetInactiveAfterTouching()
     {
         yield return new WaitForSeconds(0.3f);

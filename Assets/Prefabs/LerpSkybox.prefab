@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64dcd6a0370c940c2a0fb9964f8a9a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.34901962, g: 0.36862746, b: 0.93333334, a: 0}
-  sunsetColor: {r: 1, g: 0.6200604, b: 0.06132078, a: 0}
+  color: {r: 0.18039216, g: 0.1764706, b: 0.6784314, a: 0}
+  sunsetColor: {r: 0.9647059, g: 0.6117647, b: 1, a: 0}

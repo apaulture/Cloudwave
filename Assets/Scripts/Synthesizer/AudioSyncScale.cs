@@ -65,20 +65,20 @@ public class AudioSyncScale : AudioSyncer
         }
         */
 
+        /*
+        Instantiate(note, position, Quaternion.identity, transform.parent);
+        StopCoroutine("MoveToScale");
+        StartCoroutine("MoveToScale", beatScale);
+        m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+        NoteController.totalNotes++;
+        */
+
+        
         int bodyPosition = Random.Range(1, 4);
 
-        // left position
         if (bodyPosition == 1)
         {
-            /*
-            notesRemaining = 6;
-            left = true;
-            center = false;
-            right = false;
-            */
-
-            // while (notesRemaining > 0)
-            {
+            
                 int leftPosition = Random.Range(1, 6);
                 if (leftPosition <= 2 && transform.name == "LBLH")
                 {
@@ -87,7 +87,6 @@ public class AudioSyncScale : AudioSyncer
                     StartCoroutine("MoveToScale", beatScale);
                     m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
                     NoteController.totalNotes++;
-                    // notesRemaining--;
                 }
                 else if (leftPosition == 3 && transform.name == "LB")
                 {
@@ -96,7 +95,6 @@ public class AudioSyncScale : AudioSyncer
                     StartCoroutine("MoveToScale", beatScale);
                     m_Renderer.material.SetColor("_EmissionColor", leftBodyColor);
                     NoteController.totalNotes++;
-                    // notesRemaining--;
                 }
                 else if (leftPosition > 3 && transform.name == "CBLHLBRH")
                 {
@@ -105,83 +103,62 @@ public class AudioSyncScale : AudioSyncer
                     StartCoroutine("MoveToScale", beatScale);
                     m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
                     NoteController.totalNotes++;
-                    // notesRemaining--;
                 }
-            }
-
-            // After notes remaining reaches 0...
-            // left = false;
         }
 
-        // center position
         else if (bodyPosition == 2)
         {
-
-
-            // while (notesRemaining > 0)
+            int centerPosition = Random.Range(1, 3);
+            if (centerPosition == 1 && transform.name == "CBLHLBRH")
             {
-                int centerPosition = Random.Range(1, 3);
-                if (centerPosition == 1 && transform.name == "CBLHLBRH")
-                {
-                    Instantiate(note, position, Quaternion.identity, transform.parent);
-                    StopCoroutine("MoveToScale");
-                    StartCoroutine("MoveToScale", beatScale);
-                    m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
-                    NoteController.totalNotes++;
+                Instantiate(note, position, Quaternion.identity, transform.parent);
+                StopCoroutine("MoveToScale");
+                StartCoroutine("MoveToScale", beatScale);
+                m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+                NoteController.totalNotes++;
 
-                }
-                else if (centerPosition == 2 && transform.name == "CBRHRBLH")
-                {
-                    Instantiate(note, position, Quaternion.identity, transform.parent);
-                    StopCoroutine("MoveToScale");
-                    StartCoroutine("MoveToScale", beatScale);
-                    m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
-                    NoteController.totalNotes++;
-
-                }
             }
+            else if (centerPosition == 2 && transform.name == "CBRHRBLH")
+            {
+                Instantiate(note, position, Quaternion.identity, transform.parent);
+                StopCoroutine("MoveToScale");
+                StartCoroutine("MoveToScale", beatScale);
+                m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+                NoteController.totalNotes++;
 
-            // center = false;
+            }
         }
 
-        // right position
         else if (bodyPosition == 3)
         {
-
-            // while (notesRemaining > 0)
+            int rightPosition = Random.Range(1, 6);
+            if (rightPosition <= 2 && transform.name == "CBRHRBLH")
             {
-                int rightPosition = Random.Range(1, 6);
-                if (rightPosition <= 2 && transform.name == "CBRHRBLH")
-                {
-                    Instantiate(note, position, Quaternion.identity, transform.parent);
-                    StopCoroutine("MoveToScale");
-                    StartCoroutine("MoveToScale", beatScale);
-                    m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
-                    NoteController.totalNotes++;
-
-                }
-                else if (rightPosition == 3 && transform.name == "RB")
-                {
-                    Instantiate(note, position, Quaternion.identity, transform.parent);
-                    StopCoroutine("MoveToScale");
-                    StartCoroutine("MoveToScale", beatScale);
-                    m_Renderer.material.SetColor("_EmissionColor", rightBodyColor);
-                    NoteController.totalNotes++;
-
-                }
-                else if (rightPosition > 3 && transform.name == "RBRH")
-                {
-                    Instantiate(note, position, Quaternion.identity, transform.parent);
-                    StopCoroutine("MoveToScale");
-                    StartCoroutine("MoveToScale", beatScale);
-                    m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
-                    NoteController.totalNotes++;
-
-                }
+                Instantiate(note, position, Quaternion.identity, transform.parent);
+                StopCoroutine("MoveToScale");
+                StartCoroutine("MoveToScale", beatScale);
+                m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+                NoteController.totalNotes++;
             }
-
-            // right = false;
+            else if (rightPosition == 3 && transform.name == "RB")
+            {
+                Instantiate(note, position, Quaternion.identity, transform.parent);
+                StopCoroutine("MoveToScale");
+                StartCoroutine("MoveToScale", beatScale);
+                m_Renderer.material.SetColor("_EmissionColor", rightBodyColor);
+                NoteController.totalNotes++;
+            }
+            else if (rightPosition > 3 && transform.name == "RBRH")
+            {
+                Instantiate(note, position, Quaternion.identity, transform.parent);
+                StopCoroutine("MoveToScale");
+                StartCoroutine("MoveToScale", beatScale);
+                m_Renderer.material.SetColor("_EmissionColor", leftHandsColor);
+                NoteController.totalNotes++;
+            }
         }
+        
+    
     }
 
     IEnumerator MoveToScale(Vector3 _target)
