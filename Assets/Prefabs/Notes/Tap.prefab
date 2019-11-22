@@ -129,9 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tapSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
-  swipeSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
-  holdSound: {fileID: 8300000, guid: f024969c2dbe5dc419e4c65232c854be, type: 3}
-  heldParticle: {fileID: 0}
 --- !u!82 &-1806317562587547511
 AudioSource:
   m_ObjectHideFlags: 0
@@ -144,7 +141,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e1fad596f0a4e4d41b10f12203fb62ee, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

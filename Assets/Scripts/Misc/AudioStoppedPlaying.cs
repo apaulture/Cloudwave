@@ -56,7 +56,7 @@ public class AudioStoppedPlaying : MonoBehaviour
             scoreBoard.SetActive(true);
             rankingText.text = message;
             collectedText.text = NoteController.notesCollected.ToString();
-            totalText.text = "/ " + NoteController.totalNotes.ToString();
+            totalText.text = " / " + NoteController.totalNotes.ToString();
             elevatorgate.GetComponent<Animator>().SetBool("SongEnded", true);
         }
     }

@@ -15,11 +15,11 @@ public class BuildingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 1; i < 300; i++)
+        for (int i = 1; i < 750; i++)
         {
             // Randomize position of buildings
-            xPos = Random.Range(-160f, 160f);
-            zPos = Random.Range(-160f, 160f);
+            xPos = Random.Range(-175, 175);
+            zPos = Random.Range(-175, 175);
 
             // about 28 to approx 254 is max distance from center for -180 to 180
             // We want to multiply yScale by about 1-4, so, 254-28 / 4, increment by every ~56
@@ -31,9 +31,11 @@ public class BuildingController : MonoBehaviour
 
             // Randomize building scale
             xScale = Random.Range(4f, 4f);
-            float yScale = Random.Range(25f, 40f) * heightDistanceScale;
+            float yScale = Random.Range(20f, 45f) * heightDistanceScale;
             zScale = Random.Range(4f, 4f);
             buildingScale = new Vector3(xScale, yScale, zScale);
+
+
 
             // The rooftop building is 30m tall, so subtract about 30 from half of scale to achieve the correct height from world ground
             float height = (yScale / 2f) - 30f;
@@ -43,6 +45,10 @@ public class BuildingController : MonoBehaviour
 
             spawnedBuilding = Instantiate(building, position, Quaternion.identity, transform);
             spawnedBuilding.transform.localScale += buildingScale;
+
+            float yRotation = Random.Range(0, 90);
+
+            spawnedBuilding.transform.eulerAngles = new Vector3(0, yRotation, 0);
         }
     }
 

@@ -21,7 +21,7 @@ public class SkyboxController : MonoBehaviour
     {
         if (TriggerSun.sunTriggered)
         {
-            lerpValue += Time.deltaTime * 0.12f;
+            lerpValue += Time.deltaTime * 0.1f;
             lerpColor = Color.Lerp(color, sunsetColor, lerpValue);
             RenderSettings.skybox.SetColor("_Tint", lerpColor);
         }

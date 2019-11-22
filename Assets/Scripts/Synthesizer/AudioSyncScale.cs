@@ -50,8 +50,9 @@ public class AudioSyncScale : AudioSyncer
 
         // Randomize spawn position of notes
         Vector3 position = transform.position;
-        position.x += Random.Range(-0.3f, 0.3f);
-        position.y += Random.Range(-0.3f, 0.3f);
+        position.x += Random.Range(-0.2f, 0.2f);
+        position.y += Random.Range(-0.2f, 0.2f);
+        Vector3 positionBody = transform.position;
 
         /*
         int bodyPosition = 0;
@@ -90,7 +91,7 @@ public class AudioSyncScale : AudioSyncer
                 }
                 else if (leftPosition == 3 && transform.name == "LB")
                 {
-                    Instantiate(note, position, Quaternion.identity, transform.parent);
+                    Instantiate(note, positionBody, Quaternion.Euler(0, 90 - 1.977f, 90), transform.parent);
                     StopCoroutine("MoveToScale");
                     StartCoroutine("MoveToScale", beatScale);
                     m_Renderer.material.SetColor("_EmissionColor", leftBodyColor);
@@ -142,7 +143,7 @@ public class AudioSyncScale : AudioSyncer
             }
             else if (rightPosition == 3 && transform.name == "RB")
             {
-                Instantiate(note, position, Quaternion.identity, transform.parent);
+                Instantiate(note, positionBody, Quaternion.Euler(180, 90 + 1.977f, 90), transform.parent);
                 StopCoroutine("MoveToScale");
                 StartCoroutine("MoveToScale", beatScale);
                 m_Renderer.material.SetColor("_EmissionColor", rightBodyColor);

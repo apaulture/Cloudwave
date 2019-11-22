@@ -14,9 +14,20 @@ public class BounceController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Object")
+        if (other.gameObject.CompareTag("Floor"))
         {
             m_AudioSource.Play();
+            
+        }
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Floor"))
+        {
+            m_AudioSource.Stop();
+
         }
     }
 }

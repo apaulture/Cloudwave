@@ -27,7 +27,7 @@ public class TriggerSun : MonoBehaviour
             
             
         }
-        if (other.name == "Elevator Floor" && transform.name == "Titletrigger")
+        if (other.gameObject.name == "Elevator Floor" && transform.name == "Titletrigger")
         {
             titleTriggered = true;
         }
