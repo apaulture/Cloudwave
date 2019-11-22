@@ -12,7 +12,6 @@ public class SongController : MonoBehaviour {
 
 	float[] realTimeSpectrum;
 	SpectralFluxAnalyzer realTimeSpectralFluxAnalyzer;
-	PlotController realTimePlotController;
 
 	int numChannels;
 	int numTotalSamples;
@@ -20,14 +19,14 @@ public class SongController : MonoBehaviour {
 	float clipLength;
 	float[] multiChannelSamples;
 	SpectralFluxAnalyzer preProcessedSpectralFluxAnalyzer;
-	PlotController preProcessedPlotController;
 
 	AudioSource audioSource;
 
 	public bool realTimeSamples = true;
 	public bool preProcessSamples = false;
-
-    public BeatChecker beatChecker;
+    public BeatChecker bc;
+    bool ready = false;
+    
 
 	void Start() {
 		audioSource = GetComponent<AudioSource> ();
@@ -36,7 +35,6 @@ public class SongController : MonoBehaviour {
 		if (realTimeSamples) {
 			realTimeSpectrum = new float[1024];
 			realTimeSpectralFluxAnalyzer = new SpectralFluxAnalyzer ();
-			realTimePlotController = GameObject.Find ("RealtimePlot").GetComponent<PlotController> ();
 
 			this.sampleRate = AudioSettings.outputSampleRate;
 		}
@@ -44,7 +42,6 @@ public class SongController : MonoBehaviour {
 		// Preprocess entire audio file upfront
 		if (preProcessSamples) {
 			preProcessedSpectralFluxAnalyzer = new SpectralFluxAnalyzer ();
-			preProcessedPlotController = GameObject.Find ("PreprocessedPlot").GetComponent<PlotController> ();
 
 			// Need all audio samples.  If in stereo, samples will return with left and right channels interweaved
 			// [L,R,L,R,L,R]
@@ -72,14 +69,18 @@ public class SongController : MonoBehaviour {
 		if (realTimeSamples) {
 			audioSource.GetSpectrumData (realTimeSpectrum, 0, FFTWindow.BlackmanHarris);
 			realTimeSpectralFluxAnalyzer.analyzeSpectrum (realTimeSpectrum, audioSource.time);
-			realTimePlotController.updatePlot (realTimeSpectralFluxAnalyzer.spectralFluxSamples);
 		}
 
 		// Preprocessed
 		if (preProcessSamples) {
 			int indexToPlot = getIndexFromTime (audioSource.time) / 1024;
-			preProcessedPlotController.updatePlot (preProcessedSpectralFluxAnalyzer.spectralFluxSamples, indexToPlot);
 		}
+
+        if (ready)
+        {
+            audioSource.Play();
+            ready = false;
+        }
 	}
 
 	public int getIndexFromTime(float curTime) {
@@ -151,5 +152,13 @@ public class SongController : MonoBehaviour {
 			// Catch exceptions here since the background thread won't always surface the exception to the main thread
 			Debug.Log (e.ToString ());
 		}
+
+        bc.FindTheGoodBeats(preProcessedSpectralFluxAnalyzer.spectralFluxSamples);
 	}
+
+    public void Play()
+    {
+        ready = true;
+    }
+
 }
